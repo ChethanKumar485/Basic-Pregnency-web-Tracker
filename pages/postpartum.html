@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Postpartum — Bloom v2</title>
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🌸 <span>Bloom</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li><li><a href="timeline.html" >Timeline</a></li>
+    <li><a href="nutrition.html" >Nutrition</a></li><li><a href="weight.html" >Weight</a></li>
+    <li><a href="activity.html" >Activity</a></li><li><a href="sleep.html" >Sleep</a></li>
+    <li><a href="warnings.html" class="warn-link">⚠ Warnings</a></li>
+    <li><a href="postpartum.html" class="active">Postpartum</a></li><li><a href="birth-plan.html">📋 Birth Plan</a></li><li><a href="ai-advisor.html">🤖 AI</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<div class="page-wrap">
+  <a href="../index.html" class="back-link">← Dashboard</a>
+  <div class="ph">
+    <div class="eyebrow">Postpartum Recovery · 0–12 Weeks</div>
+    <div class="page-title">🤱 The <em>Fourth Trimester</em></div>
+    <div class="page-sub">Recovery tracking, lochia monitoring, mental health screening, and your postpartum journey.</div>
+  </div>
+<!-- Banner -->
+  <div class="card" style="background:linear-gradient(135deg,#e8a05c,#c47030);color:white;border:none;text-align:center">
+    <div style="font-size:2.5rem">🌸</div>
+    <div class="card-title" style="color:#fff;margin-bottom:.4rem">Weeks 0–12: The Fourth Trimester</div>
+    <p style="color:rgba(255,255,255,0.9)">Your body went through an extraordinary change. The postpartum period — weeks 0 to 12 — is a time of physical recovery, emotional adjustment, and bonding. Be patient and kind with yourself.</p>
+  </div>
+
+  <!-- Recovery Timeline -->
+  <div class="card">
+    <div class="card-title">📅 Postpartum Recovery Timeline</div>
+    <div class="pp-tl">
+      <div class="pp-item">
+        <strong>Day 1–3: Hospital / Immediate Recovery</strong>
+        <p class="t-mute" style="font-size:0.88rem;margin-top:0.3rem">Uterus begins contracting to pre-pregnancy size. Colostrum (first milk) produced. Perineal soreness or C-section incision care. Emotional intensity and "baby blues" may begin.</p>
+      </div>
+      <div class="pp-item">
+        <strong>Days 3–7: Going Home</strong>
+        <p class="t-mute" style="font-size:0.88rem;margin-top:0.3rem">Breast milk typically comes in days 3–5. Lochia (vaginal discharge) is bright red and heavy. Focus on rest, hydration, and nutrition. Accept help from family.</p>
+      </div>
+      <div class="pp-item">
+        <strong>Week 1–2: "Baby Blues" Window</strong>
+        <p class="t-mute" style="font-size:0.88rem;margin-top:0.3rem">Up to 80% of mothers experience baby blues — tearfulness, mood swings, anxiety from hormonal shifts. This is <em>normal</em> and usually resolves by 2 weeks.</p>
+      </div>
+      <div class="pp-item">
+        <strong>Week 2–6: Physical Recovery</strong>
+        <p class="t-mute" style="font-size:0.88rem;margin-top:0.3rem">Lochia changes from red → pink → white/yellow, then stops. Uterus returns to normal size by week 6. C-section scar heals externally. Avoid sexual intercourse and tampon use until cleared.</p>
+      </div>
+      <div class="pp-item">
+        <strong>Week 6: Six-Week Postnatal Checkup ⭐</strong>
+        <p class="t-mute" style="font-size:0.88rem;margin-top:0.3rem">Critical appointment: physical exam, blood pressure, weight, mental health screen, contraception discussion. <strong>Get cleared before resuming full physical activity.</strong></p>
+      </div>
+      <div class="pp-item">
+        <strong>Week 6–12: Gradual Return to Activity</strong>
+        <p class="t-mute" style="font-size:0.88rem;margin-top:0.3rem">Begin gentle exercise (walking, pelvic floor) after 6-week clearance. C-section mothers may need longer. Running and high-impact exercise typically after 12 weeks with pelvic floor check.</p>
+      </div>
+      <div class="pp-item">
+        <strong>Month 3–6: Hormonal Settling</strong>
+        <p class="t-mute" style="font-size:0.88rem;margin-top:0.3rem">Hormones continue to fluctuate, especially if breastfeeding. Hair loss (telogen effluvium) common at 3–4 months. Libido and energy gradually return.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lochia Tracker -->
+  <div class="card">
+    <div class="card-title">🩸 Lochia (Postpartum Discharge) Tracker</div>
+    <p class="t-mute mb-l">Lochia is the normal uterine discharge after birth. It typically lasts <strong>4–6 weeks</strong> and changes color as you heal.</p>
+    <table class="data-table">
+      <thead><tr><th>Stage</th><th>Weeks</th><th>Color</th><th>Normal?</th></tr></thead>
+      <tbody>
+        <tr><td>Lochia Rubra</td><td>Days 1–4</td><td>🔴 Bright red, heavy</td><td><span class="badge b-safe">Normal</span></td></tr>
+        <tr><td>Lochia Serosa</td><td>Days 4–10</td><td>🩷 Pink to brownish, lighter</td><td><span class="badge b-safe">Normal</span></td></tr>
+        <tr><td>Lochia Alba</td><td>Weeks 2–6</td><td>🤍 White/yellow, very light</td><td><span class="badge b-safe">Normal</span></td></tr>
+        <tr><td>Sudden bright red return</td><td>Any time</td><td>🔴 Heavy red after lightening</td><td><span class="badge b-avoid">Seek care</span></td></tr>
+        <tr><td>Foul-smelling discharge</td><td>Any time</td><td>Any color</td><td><span class="badge b-avoid">Seek care — possible infection</span></td></tr>
+        <tr><td>Soaking a pad per hour for 2+ hrs</td><td>Any time</td><td>Bright red</td><td><span class="badge b-avoid">Emergency — postpartum hemorrhage</span></td></tr>
+      </tbody>
+    </table>
+    <div class="ib ib-g mt-l">⚠️ <strong>When to call your provider:</strong> Soaking more than one pad per hour for 2+ hours, fever, foul smell, large clots (bigger than a golf ball), or lochia returning to heavy red after lightening.</div>
+
+    <h3 style="margin-top:1.5rem">Log Today's Lochia</h3>
+    <div class="form-grid" style="max-width:400px">
+      <div class="form-group">
+        <label class="form-label">Postpartum Day</label>
+        <input type="number" id="lochiaDay" class="form-input" min="1" max="42" placeholder="e.g. 5"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Color / Stage</label>
+        <select id="lochiaColor" class="form-input">
+          <option>Bright red (Rubra)</option>
+          <option>Pink/brown (Serosa)</option>
+          <option>White/yellow (Alba)</option>
+          <option>Bright red return</option>
+          <option>Stopped</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-p" onclick="logLochia()">Log Entry</button>
+    <div id="lochiaLog" class="mt-l"></div>
+  </div>
+
+  <!-- Mental Health -->
+  <div class="card" style="border:2px solid var(--lav)">
+    <div class="card-title">💜 Mental Health Screen</div>
+    <p class="t-mute mb-l">Answer honestly. Your feelings matter and postpartum mental health is a medical condition.</p>
+
+    <div class="g g-2" style="margin-bottom:1.5rem">
+      <div style="padding:1rem;background:var(--blush);border-radius:var(--radius-sm);border-left:4px solid var(--gold)">
+        <h3>Baby Blues (Normal — First 2 Weeks)</h3>
+        <ul style="padding-left:1.2rem;line-height:2;font-size:0.88rem;margin-top:0.5rem">
+          <li>Mood swings and tearfulness</li>
+          <li>Feeling overwhelmed or anxious</li>
+          <li>Difficulty sleeping even when baby sleeps</li>
+          <li>Irritability or sadness</li>
+          <li><strong>Resolves within 2 weeks</strong> without treatment</li>
+        </ul>
+      </div>
+      <div style="padding:1rem;background:#fff5f5;border-radius:var(--radius-sm);border-left:4px solid var(--clay)">
+        <h3>Postpartum Depression (Needs Treatment)</h3>
+        <ul style="padding-left:1.2rem;line-height:2;font-size:0.88rem;margin-top:0.5rem">
+          <li>Persistent sadness lasting beyond 2 weeks</li>
+          <li>Feeling disconnected from or unable to bond with baby</li>
+          <li>Feeling like a bad mother or worthless</li>
+          <li>Loss of interest in everything</li>
+          <li>Thoughts of harming yourself or baby</li>
+          <li><strong>Requires medical help — you are not alone</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>How are you feeling? (Check all that apply)</h3>
+    <div id="mhScreen">
+      <ul class="checklist">
+        <li><input type="checkbox" class="mh-check" data-type="blues" data-key="pp-sad"><span>I feel sad or "empty" more often than not</span></li>
+        <li><input type="checkbox" class="mh-check" data-type="blues" data-key="pp-cry"><span>I cry frequently without a clear reason</span></li>
+        <li><input type="checkbox" class="mh-check" data-type="blues" data-key="pp-overwhelm"><span>I feel overwhelmed and unable to cope</span></li>
+        <li><input type="checkbox" class="mh-check" data-type="ppd" data-key="pp-bond"><span>I feel disconnected from my baby and unable to bond</span></li>
+        <li><input type="checkbox" class="mh-check" data-type="ppd" data-key="pp-worthless"><span>I feel like a failure or that my baby would be better off without me</span></li>
+        <li><input type="checkbox" class="mh-check" data-type="ppd" data-key="pp-harm"><span>I have had thoughts of harming myself or my baby</span></li>
+        <li><input type="checkbox" class="mh-check" data-type="ppd" data-key="pp-interest"><span>I have lost interest in activities I used to enjoy</span></li>
+        <li><input type="checkbox" class="mh-check" data-type="blues" data-key="pp-anxiety"><span>I feel extreme anxiety or panic attacks</span></li>
+      </ul>
+      <button class="btn btn-p mt-l" onclick="checkMentalHealth()">Evaluate My Responses</button>
+      <div id="mhResult" class="mt-l"></div>
+    </div>
+  </div>
+
+  <!-- Postpartum Checklist -->
+  <div class="card">
+    <div class="card-title">✅ Six-Week Postpartum Checklist</div>
+    <div class="g g-2">
+      <ul class="checklist">
+        <li class="cl-item"><input type="checkbox" data-key="pp-checkup"/><span>Six-week postnatal appointment scheduled</span></li>
+        <li class="cl-item"><input type="checkbox" data-key="pp-bp"/><span>Blood pressure checked postpartum</span></li>
+        <li class="cl-item"><input type="checkbox" data-key="pp-anemia"/><span>Iron/anemia levels rechecked</span></li>
+        <li class="cl-item"><input type="checkbox" data-key="pp-thyroid"/><span>Thyroid function checked (postpartum thyroiditis common)</span></li>
+        <li class="cl-item"><input type="checkbox" data-key="pp-pap"/><span>Cervical screening / Pap smear if due</span></li>
+        <li class="cl-item"><input type="checkbox" data-key="pp-contraception"/><span>Contraception discussed with provider</span></li>
+      </ul>
+      <ul class="checklist">
+        <li class="cl-item"><input type="checkbox" data-key="pp-perineum"/><span>Perineum / C-section healing assessed</span></li>
+        <li class="cl-item"><input type="checkbox" data-key="pp-mhscreen"/><span>Mental health screen completed with provider</span></li>
+        <li class="cl-item"><input type="checkbox" data-key="pp-bf"/><span>Breastfeeding support / lactation consultation if needed</span></li>
+        <li class="cl-item"><input type="checkbox" data-key="pp-activity"/><span>Cleared for exercise / full physical activity</span></li>
+        <li class="cl-item"><input type="checkbox" data-key="pp-baby"/><span>Baby's 6-week check with pediatrician</span></li>
+        <li class="cl-item"><input type="checkbox" data-key="pp-support"/><span>Support network in place (family, counsellor, group)</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+<footer class="footer"><div class="footer-logo">🌸 <em>Bloom</em> v2</div><div>Postpartum mental health is a medical condition. Please seek help if you are struggling.</div></footer>
+<script src="../js/core.js"></script>
+<script>
+function logLochia() {
+  const day = document.getElementById('lochiaDay').value;
+  const color = document.getElementById('lochiaColor').value;
+  if (!day) { alert('Enter postpartum day.'); return; }
+  const log = JSON.parse(localStorage.getItem('bloomLochiaLog') || '[]');
+  log.push({ day, color, date: new Date().toLocaleDateString() });
+  localStorage.setItem('bloomLochiaLog', JSON.stringify(log));
+  renderLochiaLog();
+}
+function renderLochiaLog() {
+  const log = JSON.parse(localStorage.getItem('bloomLochiaLog') || '[]');
+  if (log.length === 0) { document.getElementById('lochiaLog').innerHTML = ''; return; }
+  let html = '<table class="data-table" style="margin-top:0.8rem"><thead><tr><th>Date</th><th>PP Day</th><th>Color/Stage</th></tr></thead><tbody>';
+  log.slice(-7).reverse().forEach(e => {
+    html += `<tr><td>${e.date}</td><td>Day ${e.day}</td><td>${e.color}</td></tr>`;
+  });
+  html += '</tbody></table>';
+  document.getElementById('lochiaLog').innerHTML = html;
+}
+function checkMentalHealth() {
+  const checks = document.querySelectorAll('.mh-check:checked');
+  const hasPPD = Array.from(checks).some(c => c.dataset.type === 'ppd');
+  const hasBlues = Array.from(checks).some(c => c.dataset.type === 'blues');
+  const harmCheck = document.querySelector('[data-key="pp-harm"]:checked');
+  let html = '';
+  if (harmCheck) {
+    html = '<div class="alert-banner" style="display:block;margin-top:0">🚨 URGENT: You have reported thoughts of harming yourself or your baby. Please contact emergency services (112/911) or your healthcare provider <strong>immediately</strong>. You are not alone.</div>';
+  } else if (hasPPD) {
+    html = '<div style="background:#fff5f5;border-left:4px solid var(--clay-d);padding:1rem;border-radius:var(--radius-sm)"><strong>⚠️ Your responses suggest symptoms consistent with Postpartum Depression (PPD).</strong><br/><br/>PPD is a medical condition affecting 1 in 7 mothers. It is not your fault and is highly treatable.<br/><br/>Please <strong>call your OB/midwife or GP today</strong> and tell them what you are experiencing. Effective treatments include therapy, support groups, and medication that is safe during breastfeeding.</div>';
+  } else if (hasBlues) {
+    html = '<div class="ib ib-s"><strong>Your responses suggest "Baby Blues"</strong> — very common in the first two weeks postpartum. Hormonal shifts cause these feelings.<br/><br/>Rest as much as possible, accept help, eat well, and stay connected with loved ones. If symptoms persist beyond 2 weeks, speak to your provider.</div>';
+  } else if (checks.length === 0) {
+    html = '<div class="ib ib-s">You didn\'t select any symptoms — that\'s wonderful! Keep checking in with yourself regularly.</div>';
+  } else {
+    html = '<div class="ib ib-s">Thank you for sharing. Continue to monitor your feelings. Don\'t hesitate to reach out to your provider if anything changes.</div>';
+  }
+  document.getElementById('mhResult').innerHTML = html;
+}
+window.addEventListener('DOMContentLoaded', renderLochiaLog);
+</script>
+</body>
+</html>

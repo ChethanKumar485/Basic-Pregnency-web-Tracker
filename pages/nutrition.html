@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Nutrition — Bloom v2</title>
+<link rel="stylesheet" href="../css/main.css"/>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🌸 <span>Bloom</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li><li><a href="timeline.html">Timeline</a></li>
+    <li><a href="nutrition.html" class="active">Nutrition</a></li><li><a href="weight.html">Weight</a></li>
+    <li><a href="activity.html">Activity</a></li><li><a href="sleep.html">Sleep</a></li>
+    <li><a href="warnings.html" class="warn-link">⚠ Warnings</a></li>
+    <li><a href="postpartum.html">Postpartum</a></li><li><a href="birth-plan.html">📋 Birth Plan</a></li><li><a href="ai-advisor.html">🤖 AI</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="page-wrap">
+  <a href="../index.html" class="back-link">← Dashboard</a>
+  <div class="ph">
+    <div class="eyebrow">ACOG · WHO · NHS · ICMR · Research-Based</div>
+    <div class="page-title">🥗 12-Month <em>Nutrition Plan</em></div>
+    <div class="page-sub">Complete month-by-month veg and non-veg meal plans based on clinical guidelines — personalised to your trimester and BMI.</div>
+  </div>
+
+  <div id="calBanner" class="card mb-l" style="background:linear-gradient(135deg,var(--sage-d),var(--sage));color:#fff;border:none">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.75">Your Calorie Adjustment This Trimester</div>
+        <div style="font-family:var(--fd);font-size:2.6rem;font-weight:300;color:#fff;line-height:1" id="calDisplay">+0 kcal/day</div>
+        <div style="opacity:.75;font-size:.84rem;margin-top:.3rem" id="calContext">Set your profile on the dashboard to personalise</div>
+      </div>
+      <div style="background:rgba(255,255,255,.15);border-radius:var(--r-l);padding:1rem 1.5rem;text-align:center">
+        <div style="font-size:.68rem;opacity:.7;text-transform:uppercase;letter-spacing:.08em">Week / Trimester</div>
+        <div style="font-family:var(--fd);font-size:2rem;font-weight:300;color:#fff" id="nutWeek">--</div>
+        <div style="font-size:.72rem;opacity:.7" id="nutTrim">--</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('plan','nut',this)">📅 12-Month Plan</button>
+    <button class="tab-btn" onclick="switchTab('nutrients','nut',this)">💊 Key Nutrients</button>
+    <button class="tab-btn" onclick="switchTab('safety','nut',this)">🚫 Food Safety</button>
+    <button class="tab-btn" onclick="switchTab('brain','nut',this)">🧠 Brain Foods</button>
+    <button class="tab-btn" onclick="switchTab('calorie','nut',this)">🔢 Calorie Guide</button>
+  </div>
+
+  <!-- 12-MONTH PLAN TAB -->
+  <div class="tab-panel active" id="nut-plan">
+    <div class="card mb-l" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="card-title" style="margin-bottom:.3rem">Select Your Diet Type</div>
+        <div class="t-mute t-sm">All 12 months have both Vegetarian and Non-Vegetarian versions</div>
+      </div>
+      <div style="display:flex;gap:.5rem">
+        <button class="btn btn-s diet-btn" id="vegBtn" onclick="switchDiet('veg',this)">🌿 Vegetarian</button>
+        <button class="btn btn-g diet-btn" id="nonvegBtn" onclick="switchDiet('nonveg',this)">🍗 Non-Vegetarian</button>
+      </div>
+    </div>
+    <div id="currentMonthBanner" class="ib ib-c mb-l hidden"></div>
+    <div id="monthContainer" class="g" style="gap:.8rem"></div>
+  </div>
+
+  <!-- KEY NUTRIENTS TAB -->
+  <div class="tab-panel" id="nut-nutrients">
+    <div class="g ga-sm">
+      <div class="nut-card"><div style="font-size:1.8rem;margin-bottom:.5rem">🌿</div><h4>Folic Acid</h4><p>Prevents neural tube defects. Critical weeks 1–12 for closure. Continue throughout pregnancy for DNA synthesis.</p><div class="sources">Sources: Leafy greens, lentils, fortified cereals, oranges, avocado, beetroot</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">400–800 mcg T1 · 600 mcg T2/T3</span></div>
+      <div class="nut-card"><div style="font-size:1.8rem;margin-bottom:.5rem">🩸</div><h4>Iron</h4><p>Prevents anaemia. Supports 50% blood volume expansion. Baby builds iron stores in T3 for first 6 months of life.</p><div class="sources">Sources: Red meat, lentils, ragi, spinach, tofu, liver (limited) + Vitamin C</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">27 mg/day</span></div>
+      <div class="nut-card"><div style="font-size:1.8rem;margin-bottom:.5rem">🦷</div><h4>Calcium</h4><p>Baby's skeleton and teeth. Inadequate intake causes baby to draw from maternal bones, raising osteoporosis risk.</p><div class="sources">Sources: Dairy, ragi (250mg/100g), sesame seeds, sardines (bones), fortified milks, broccoli</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">1000 mg/day</span></div>
+      <div class="nut-card"><div style="font-size:1.8rem;margin-bottom:.5rem">🐟</div><h4>DHA / Omega-3</h4><p>Brain cortex and retina structural fat. Brain triples in last 13 weeks — DHA critical. Reduces preterm birth risk.</p><div class="sources">Sources: Salmon, sardines, mackerel (low Hg); walnuts, flaxseed, algae supplements (veg)</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">200–300 mg DHA/day</span></div>
+      <div class="nut-card"><div style="font-size:1.8rem;margin-bottom:.5rem">🥚</div><h4>Choline</h4><p>Brain cell membrane structure. Deficiency causes lifelong memory deficits. Often absent in prenatal vitamins.</p><div class="sources">Sources: Eggs (best — 2 eggs = 300mg), chicken liver, salmon, soybeans, broccoli, quinoa</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">450 mg/day</span></div>
+      <div class="nut-card"><div style="font-size:1.8rem;margin-bottom:.5rem">🧂</div><h4>Iodine</h4><p>Thyroid hormones regulate fetal brain maturation and neuron development. Leading preventable cause of intellectual disability globally.</p><div class="sources">Sources: Iodised salt, dairy, eggs, seafood. Vegetarians especially at risk.</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">220 mcg/day</span></div>
+      <div class="nut-card"><div style="font-size:1.8rem;margin-bottom:.5rem">☀️</div><h4>Vitamin D</h4><p>Bone mineralisation with calcium. Deficiency linked to gestational diabetes, preeclampsia, and low birth weight.</p><div class="sources">Sources: Sunlight (20 min/day), egg yolks, fortified milk, fatty fish, supplements</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">600–2000 IU/day</span></div>
+      <div class="nut-card"><div style="font-size:1.8rem;margin-bottom:.5rem">💊</div><h4>Vitamin B12</h4><p>Nerve development and red blood cell formation. Vegetarians/vegans must supplement — no plant food contains B12.</p><div class="sources">Sources: Meat, fish, eggs, dairy, fortified plant milks, B12 supplements</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">2.6 mcg/day</span></div>
+      <div class="nut-card"><div style="font-size:1.8rem;margin-bottom:.5rem">🥦</div><h4>Magnesium</h4><p>Regulates blood sugar and blood pressure. Prevents leg cramps common in T2/T3. Supports bone and nerve function.</p><div class="sources">Sources: Pumpkin seeds, almonds, dark chocolate, spinach, avocado, whole grains</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">350–360 mg/day</span></div>
+    </div>
+    <div class="ib ib-l mt-l">💡 <strong>Vegetarian/Vegan Note:</strong> Supplement Vitamin B12 (essential — no plant source), monitor iodine, iron (pair with Vitamin C), DHA (algae-based), and zinc. Ragi (finger millet), sesame seeds, and tofu are excellent plant-based calcium sources.</div>
+  </div>
+
+  <!-- FOOD SAFETY TAB -->
+  <div class="tab-panel" id="nut-safety">
+    <div class="card c-err mb-l">
+      <div class="card-title">🚫 Evidence-Based Food Safety Guide</div>
+      <p class="t-mute t-sm mb-l">Based on ACOG, NHS, FDA, and WHO pregnancy nutrition guidelines.</p>
+      <h3 style="font-size:1rem;font-weight:700;margin:.8rem 0">🐟 Fish — Mercury</h3>
+      <div class="t-wrap mb-l"><table class="data-table"><thead><tr><th>Fish</th><th>Status</th><th>Note</th></tr></thead><tbody>
+        <tr><td>Swordfish, Shark, King Mackerel, Bigeye Tuna, Tilefish</td><td><span class="badge b-avoid">AVOID</span></td><td>Highest mercury — damages fetal nervous system</td></tr>
+        <tr><td>Albacore / White Tuna</td><td><span class="badge b-caut">LIMIT 1x/wk</span></td><td>Moderate mercury; 170g max per week</td></tr>
+        <tr><td>Light Canned Tuna</td><td><span class="badge b-caut">LIMIT 2–3x/wk</span></td><td>Lower mercury; good protein source</td></tr>
+        <tr><td>Salmon, Sardines, Rohu, Catla, Pomfret</td><td><span class="badge b-safe">SAFE ✓</span></td><td>Low mercury; excellent DHA sources — eat 2–3x/week</td></tr>
+      </tbody></table></div>
+      <h3 style="font-size:1rem;font-weight:700;margin:.8rem 0">🧀 Dairy — Listeria Risk</h3>
+      <div class="t-wrap mb-l"><table class="data-table"><thead><tr><th>Food</th><th>Status</th><th>Note</th></tr></thead><tbody>
+        <tr><td>Brie, Camembert, blue cheeses, unpasteurised soft cheeses</td><td><span class="badge b-avoid">AVOID</span></td><td>Listeria — causes miscarriage, stillbirth, neonatal meningitis</td></tr>
+        <tr><td>Unpasteurised milk / juice</td><td><span class="badge b-avoid">AVOID</span></td><td>Listeria, Salmonella, E. coli, Campylobacter</td></tr>
+        <tr><td>Feta, queso fresco</td><td><span class="badge b-caut">CHECK LABEL</span></td><td>Must say "pasteurised milk" — otherwise avoid</td></tr>
+        <tr><td>Hard cheeses (cheddar, parmesan), pasteurised paneer, pasteurised soft cheeses</td><td><span class="badge b-safe">SAFE ✓</span></td><td>Low Listeria risk; excellent calcium sources</td></tr>
+      </tbody></table></div>
+      <h3 style="font-size:1rem;font-weight:700;margin:.8rem 0">🥩 Meat, Eggs, Proteins</h3>
+      <div class="t-wrap mb-l"><table class="data-table"><thead><tr><th>Food</th><th>Status</th><th>Note</th></tr></thead><tbody>
+        <tr><td>Raw sushi, sashimi, raw oysters, raw shellfish</td><td><span class="badge b-avoid">AVOID</span></td><td>Listeria, Vibrio, parasites, Hepatitis A</td></tr>
+        <tr><td>Rare/medium-rare beef, lamb, pork</td><td><span class="badge b-avoid">AVOID</span></td><td>Toxoplasma gondii, E. coli — cook to 74°C (165°F) internal</td></tr>
+        <tr><td>Runny/raw eggs (sunny-side, half-boiled)</td><td><span class="badge b-avoid">AVOID</span></td><td>Salmonella enteritidis — cook until yolk is fully set</td></tr>
+        <tr><td>Raw sprouts (alfalfa, bean, clover)</td><td><span class="badge b-avoid">AVOID</span></td><td>E. coli, Salmonella thrive in sprouting conditions</td></tr>
+        <tr><td>Cold deli meats, hot dogs, pâté</td><td><span class="badge b-caut">HEAT TO 74°C</span></td><td>Listeria — heat until steaming before eating</td></tr>
+        <tr><td>Liver (chicken/beef)</td><td><span class="badge b-caut">LIMIT 1x/wk</span></td><td>High Vitamin A — excess causes birth defects; 30–50g/week OK</td></tr>
+        <tr><td>Well-cooked eggs, meat, poultry (74°C)</td><td><span class="badge b-safe">SAFE ✓</span></td><td>Kills Toxoplasma, Salmonella, E. coli</td></tr>
+      </tbody></table></div>
+      <h3 style="font-size:1rem;font-weight:700;margin:.8rem 0">🫑 Fruits, Vegetables &amp; Herbs</h3>
+      <div class="t-wrap mb-l"><table class="data-table"><thead><tr><th>Food</th><th>Status</th><th>Evidence</th></tr></thead><tbody>
+        <tr><td>Raw / unripe papaya (green)</td><td><span class="badge b-avoid">AVOID</span></td><td>Papain latex causes uterine contractions — multiple studies confirm miscarriage risk</td></tr>
+        <tr><td>Pineapple (large amounts)</td><td><span class="badge b-caut">MODERATE</span></td><td>Bromelain may soften cervix in high doses; 1–2 slices/day is safe</td></tr>
+        <tr><td>Dates (6/day — last 4–6 weeks)</td><td><span class="badge b-safe">BENEFICIAL ✓</span></td><td>3 RCTs: dates reduce labour induction need and shorten first stage of labour</td></tr>
+        <tr><td>Licorice root (large amounts)</td><td><span class="badge b-avoid">AVOID</span></td><td>Glycyrrhizin impairs placental enzyme — Finnish cohort: cognitive effects in offspring</td></tr>
+        <tr><td>Pennyroyal, mugwort, black cohosh teas</td><td><span class="badge b-avoid">AVOID</span></td><td>Documented uterotonic and abortifacient properties</td></tr>
+        <tr><td>Ginger tea (1–2 cups/day)</td><td><span class="badge b-safe">SAFE ✓</span></td><td>Multiple RCTs confirm effective and safe for pregnancy nausea</td></tr>
+        <tr><td>Ripe yellow papaya, cooked pineapple</td><td><span class="badge b-safe">SAFE ✓</span></td><td>Rich in Vitamin C and fibre</td></tr>
+      </tbody></table></div>
+      <h3 style="font-size:1rem;font-weight:700;margin:.8rem 0">☕ Beverages</h3>
+      <div class="t-wrap"><table class="data-table"><thead><tr><th>Beverage</th><th>Status</th><th>Evidence</th></tr></thead><tbody>
+        <tr><td>Alcohol (any type, any amount)</td><td><span class="badge b-avoid">AVOID COMPLETELY</span></td><td>No safe level. Causes Fetal Alcohol Spectrum Disorder — lifelong cognitive impairment</td></tr>
+        <tr><td>Caffeine &gt;200mg/day</td><td><span class="badge b-avoid">AVOID</span></td><td>RCOG meta-analysis: &gt;200mg/day associated with miscarriage and low birth weight</td></tr>
+        <tr><td>Coffee, energy drinks, cola</td><td><span class="badge b-caut">COUNT TOWARD 200mg</span></td><td>1 medium coffee ≈ 100–140mg. Energy drinks also contain taurine — avoid</td></tr>
+        <tr><td>Water (8–10 glasses/day)</td><td><span class="badge b-safe">ESSENTIAL ✓</span></td><td>Amniotic fluid, blood volume, UTI prevention, reduces Braxton Hicks</td></tr>
+        <tr><td>Coconut water, pasteurised fruit juices</td><td><span class="badge b-safe">SAFE ✓</span></td><td>Excellent hydration and electrolyte sources</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+
+  <!-- BRAIN FOODS TAB -->
+  <div class="tab-panel" id="nut-brain">
+    <div class="card mb-l"><div class="card-title">🧠 Brain Development Nutrition</div>
+      <p class="t-mute t-sm mb-m">Third trimester (weeks 28–40): 250,000 neurons/minute. Brain triples in weight. Based on systematic reviews in <em>Nutrients</em>, <em>AJCN</em>, and <em>Lancet</em>.</p>
+      <div class="g g-2">
+        <div class="ib ib-l">🔬 <strong>Critical Window: Weeks 28–40</strong><br/>Rapid synaptogenesis + myelination. DHA, choline, iodine, and iron are the four most critical nutrients. Deficiency in any one causes measurable cognitive differences in offspring.</div>
+        <div class="ib ib-c">🍽️ <strong>Optimal Brain-Boost Day</strong><br/>Breakfast: 2 eggs + oats + walnuts<br/>Lunch: Salmon + broccoli + iodised salt<br/>Dinner: Dal + spinach + roti<br/>Snack: Walnuts + blueberries</div>
+      </div>
+    </div>
+    <div class="g ga-sm">
+      <div class="nut-card" style="border:2px solid var(--lav)"><h4>🥚 Choline</h4><p>Brain membrane structure. <em>Caudill et al. FASEB 2018:</em> maternal supplementation improved infant cognitive processing at 4, 7, 10, and 13 months.</p><div class="sources">Eggs, beef liver, salmon, chicken breast, soybeans, quinoa, broccoli</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">450 mg/day</span></div>
+      <div class="nut-card" style="border:2px solid #5bb8d4"><h4>🐟 DHA</h4><p>Neural membrane structure. <em>Hibbeln et al. Lancet 2007:</em> low DHA associated with lower verbal IQ, social development, and fine motor skills in children.</p><div class="sources">Salmon, sardines, mackerel; walnuts, flaxseed, chia; algae DHA (vegetarian)</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">200–300 mg/day</span></div>
+      <div class="nut-card" style="border:2px solid var(--gold)"><h4>🧂 Iodine</h4><p>Thyroid hormones regulate neuronal migration and myelination. <em>Bath et al. Lancet 2013:</em> mild deficiency = 8–10 point IQ reduction in offspring.</p><div class="sources">Iodised salt, dairy, eggs, seafood, fortified bread</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">220 mcg/day</span></div>
+      <div class="nut-card" style="border:2px solid var(--err)"><h4>🩸 Iron</h4><p>Myelination and dopamine receptors. <em>Lozoff et al. NEJM 1991:</em> iron-deficiency anaemia in pregnancy causes persistent cognitive deficits in offspring.</p><div class="sources">Red meat, chicken, lentils, ragi, spinach, tofu + Vitamin C</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">27 mg/day</span></div>
+      <div class="nut-card" style="border:2px solid var(--sage)"><h4>🫐 Antioxidants</h4><p>Protect neural tissue from oxidative stress during rapid brain development. Polyphenols in berries cross blood-brain barrier and enhance neuronal signalling.</p><div class="sources">Blueberries, strawberries, dark leafy greens, bell peppers, dark chocolate (&gt;70%)</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">Eat daily</span></div>
+      <div class="nut-card" style="border:2px solid var(--clay)"><h4>🌿 Folate B9</h4><p>DNA synthesis and cortical neuron production throughout all trimesters. Critical past T1 for brain cell division.</p><div class="sources">Lentils, chickpeas, spinach, avocado, asparagus, fortified grains, beetroot</div><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">600 mcg/day T2/T3</span></div>
+    </div>
+  </div>
+
+  <!-- CALORIE GUIDE TAB -->
+  <div class="tab-panel" id="nut-calorie">
+    <div class="g g-2">
+      <div class="card c-clay">
+        <div class="card-title">🔢 Extra Calories by Trimester</div>
+        <div class="t-wrap"><table class="data-table"><thead><tr><th>Trimester</th><th>Weeks</th><th>Extra Calories</th><th>Reason</th></tr></thead><tbody>
+          <tr><td>1st</td><td>1–13</td><td><strong>+0 kcal</strong></td><td>Embryo tiny; focus on nutrient quality, not quantity</td></tr>
+          <tr><td>2nd</td><td>14–27</td><td><strong>+200 kcal</strong></td><td>Baby growing; placenta established; blood volume expands</td></tr>
+          <tr><td>3rd</td><td>28–40</td><td><strong>+400 kcal</strong></td><td>Rapid fetal weight gain; brain development surge</td></tr>
+          <tr><td>Breastfeeding</td><td>0–6 mo</td><td><strong>+400–500 kcal</strong></td><td>Milk production requires 300–500 kcal/day</td></tr>
+        </tbody></table></div>
+        <div class="ib ib-g mt-l">⚠️ Women with BMI ≥30 should discuss caloric needs with their provider — individual requirements vary.</div>
+      </div>
+      <div class="card c-sage">
+        <div class="card-title">⚖️ Weight Gain Targets (IOM 2009)</div>
+        <div class="t-wrap"><table class="data-table"><thead><tr><th>BMI</th><th>Category</th><th>Total Gain</th><th>T2/T3 Weekly</th></tr></thead><tbody>
+          <tr><td>&lt;18.5</td><td>Underweight</td><td>12.5–18 kg</td><td>~0.5 kg/wk</td></tr>
+          <tr><td>18.5–24.9</td><td>Normal</td><td>11.5–16 kg</td><td>~0.45 kg/wk</td></tr>
+          <tr><td>25–29.9</td><td>Overweight</td><td>7–11.5 kg</td><td>~0.3 kg/wk</td></tr>
+          <tr><td>≥30</td><td><strong>Obese</strong></td><td><strong>5–9 kg</strong></td><td>~0.2 kg/wk</td></tr>
+        </tbody></table></div>
+        <div class="ib ib-s mt-l">✅ Source: Institute of Medicine (IOM) 2009 — used by ACOG, NHS, WHO globally.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-logo">🌸 <em>Bloom</em> v2</div>
+  <div>Based on ACOG · WHO · NHS · ICMR · IOM guidelines · Consult your healthcare provider and dietitian</div>
+</footer>
+<script src="../js/core.js"></script>
+<script src="../js/nutrition-data.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const p = getProfile();
+  const diet = p.diet || 'veg';
+  if (diet === 'nonveg') {
+    document.getElementById('vegBtn').classList.remove('btn-s'); document.getElementById('vegBtn').classList.add('btn-g');
+    document.getElementById('nonvegBtn').classList.remove('btn-g'); document.getElementById('nonvegBtn').classList.add('btn-s');
+  }
+  buildMonthCards(diet);
+  if (p.lmp) {
+    const w = getWeekFromLMP(p.lmp), tri = getTrimester(w), cal = getExtraCalories(tri);
+    setText('calDisplay', '+' + cal + ' kcal/day');
+    setText('nutWeek', 'Wk ' + w);
+    setText('nutTrim', ['','1st Trimester','2nd Trimester','3rd Trimester'][tri] || 'Postpartum');
+    const mo = Math.min(10, Math.max(1, getMonth(w)));
+    const banner = document.getElementById('currentMonthBanner');
+    banner.classList.remove('hidden');
+    banner.innerHTML = '📍 <strong>You are in Month ' + mo + ' (Week ' + w + ').</strong> Scroll to your month below — it will auto-open.';
+    setTimeout(() => { toggleMonth(mo - 1); document.getElementById('mc-' + (mo-1))?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 400);
+  }
+});
+function switchDiet(diet, btn) {
+  document.querySelectorAll('.diet-btn').forEach(b => { b.classList.remove('btn-s'); b.classList.add('btn-g'); });
+  btn.classList.remove('btn-g'); btn.classList.add('btn-s');
+  buildMonthCards(diet);
+  const p = getProfile();
+  if (p.lmp) { const mo = Math.min(10, Math.max(1, getMonth(getWeekFromLMP(p.lmp)))) - 1; setTimeout(() => toggleMonth(mo), 200); }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timeline — Bloom v2</title>
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🌸 <span>Bloom</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li><li><a href="timeline.html" class="active">Timeline</a></li>
+    <li><a href="nutrition.html" >Nutrition</a></li><li><a href="weight.html" >Weight</a></li>
+    <li><a href="activity.html" >Activity</a></li><li><a href="sleep.html" >Sleep</a></li>
+    <li><a href="warnings.html" class="warn-link">⚠ Warnings</a></li>
+    <li><a href="postpartum.html" >Postpartum</a></li><li><a href="birth-plan.html">📋 Birth Plan</a></li><li><a href="ai-advisor.html">🤖 AI</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<div class="page-wrap">
+  <a href="../index.html" class="back-link">← Dashboard</a>
+  <div class="ph">
+    <div class="eyebrow">Medical Calendar · Fetal Milestones · Kick Counter</div>
+    <div class="page-title">🗓️ Pregnancy <em>Timeline</em></div>
+    <div class="page-sub">Trimester-by-trimester checklists, fetal milestones, kick counter, and medical appointments.</div>
+  </div>
+<!-- Current Week Banner -->
+  <div class="card" id="currentWeekBanner" style="background:linear-gradient(135deg,var(--clay),var(--clay-d));color:white;border:none;">
+    <div class="card-title" style="color:#fff;margin-bottom:.4rem">You are at Week <span id="tlWeek">--</span></div>
+    <p style="color:rgba(255,255,255,.75)" id="tlTrimMessage">Set your LMP on the dashboard to personalize this page.</p>
+  </div>
+
+  <!-- Trimester Tabs -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('t1','trim',this)">First Trimester (Wks 1–13)</button>
+    <button class="tab-btn" onclick="switchTab('t2','trim',this)">Second Trimester (Wks 14–27)</button>
+    <button class="tab-btn" onclick="switchTab('t3','trim',this)">Third Trimester (Wks 28–40)</button>
+    <button class="tab-btn" onclick="switchTab('milestones','trim',this)">🐣 Fetal Milestones</button>
+    <button class="tab-btn" onclick="switchTab('kickcount','trim',this)">👶 Kick Counter</button>
+  </div>
+
+  <!-- T1 -->
+  <div class="tab-panel active" id="trim-t1">
+    <div class="g g-2">
+      <div class="card">
+        <div class="card-title">Medical Tasks</div>
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="t1-confirm"/><span>Confirm pregnancy with home test or blood HCG</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-ob"/><span>Schedule first OB/midwife appointment (before week 10)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-us"/><span>Confirmation ultrasound — heartbeat visible by weeks 6–7</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-cbc"/><span>Lab tests: CBC, blood type, Rh factor, rubella immunity, STI screening</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-urine"/><span>Urine culture to check for UTIs</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-vitals"/><span>Blood pressure, weight baseline recorded</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-nt"/><span>Nuchal translucency (NT) scan — weeks 11–14 (chromosomal screening)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-cvs"/><span>CVS test if indicated (weeks 10–13)</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Personal Preparations</div>
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="t1-folic"/><span>Start prenatal vitamins with <strong>folic acid (400–800 mcg)</strong> daily</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-lmp"/><span>Record Last Menstrual Period (LMP) to estimate due date</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-caffeine"/><span>Limit caffeine to &lt;200 mg/day (~1 coffee)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-alcohol"/><span>Eliminate alcohol completely</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-smoke"/><span>Stop smoking — seek support if needed</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-meds"/><span>Review all medications with your provider</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-dental"/><span>Schedule dental checkup (hormones affect gums)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-ins"/><span>Review health insurance and maternity coverage</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t1-announce"/><span>Plan when/how to announce pregnancy</span></li>
+        </ul>
+        <div class="ib ib-s mt-l">
+          💊 Folic acid in the first trimester helps prevent neural tube defects. Start <em>before</em> conception if possible.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- T2 -->
+  <div class="tab-panel" id="trim-t2">
+    <div class="g g-2">
+      <div class="card">
+        <div class="card-title">Medical Tasks</div>
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="t2-anatomy"/><span><strong>Anatomy scan (level II ultrasound)</strong> around week 20 — checks all organs</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-gd"/><span><strong>Gestational diabetes screening</strong> (glucose challenge test) weeks 24–28</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-quad"/><span>Quad screen blood test (weeks 15–20)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-amnio"/><span>Amniocentesis if indicated (weeks 15–20)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-bp"/><span>Regular blood pressure monitoring</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-iron"/><span>Iron levels checked — supplement if anaemic</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-flu"/><span>Get flu vaccine if in season</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Personal Preparations</div>
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="t2-nursery"/><span>Plan and begin setting up nursery</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-class"/><span>Enroll in childbirth education classes</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-registry"/><span>Create baby registry</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-gender"/><span>Find out baby's sex (if desired) from anatomy scan</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-names"/><span>Start discussing baby names</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-matleave"/><span>Notify employer and plan maternity leave</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-exercise"/><span>Maintain 150 min/week moderate activity</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t2-kegel"/><span>Begin daily Kegel exercises</span></li>
+        </ul>
+        <div class="ib ib-s mt-l">
+          🌟 The second trimester is often called the "honeymoon phase" — morning sickness eases and energy returns!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- T3 -->
+  <div class="tab-panel" id="trim-t3">
+    <div class="g g-2">
+      <div class="card">
+        <div class="card-title">Medical Tasks</div>
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="t3-tdap"/><span>Get <strong>Tdap vaccine</strong> (weeks 27–36) — protects newborn from whooping cough</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-gbs"/><span>Group B Strep (GBS) culture (weeks 35–37)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-weekly"/><span>Weekly/biweekly OB appointments starting week 36</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-bpp"/><span>Biophysical profile (BPP) if high risk</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-position"/><span>Baby in head-down position confirmed by week 34–36</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-cervix"/><span>Cervical checks for dilation/effacement (week 36+)</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Personal Preparations</div>
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="t3-kicks"/><span>Practice <strong>daily kick counts</strong> — aim for 10 movements in 2 hours</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-bag"/><span>Pack hospital bag by week 36</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-birthplan"/><span>Finalize and share birth plan with provider</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-carseat"/><span>Install infant car seat and get it inspected</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-pediatrician"/><span>Choose a pediatrician</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-breastfeed"/><span>Attend breastfeeding class or consult lactation specialist</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-support"/><span>Arrange postpartum support (family, doula, etc.)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="t3-sos"/><span>Sleep on left side (SOS position) for optimal blood flow</span></li>
+        </ul>
+        <div class="ib ib-g mt-l">
+          ⚠️ After 28 weeks, avoid lying flat on your back. This can compress the vena cava and reduce blood flow to you and baby.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Milestones -->
+  <div class="tab-panel" id="trim-milestones">
+    <div class="card">
+      <div class="card-title">Fetal Development Milestones</div>
+      <div class="t-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Week</th><th>Size (approx.)</th><th>Key Development</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>4</td><td>Poppy seed</td><td>Implantation complete; heart begins forming</td></tr>
+            <tr><td>6</td><td>Sweet pea</td><td>Heartbeat detectable on ultrasound; brain divides into 5 regions</td></tr>
+            <tr><td>8</td><td>Raspberry</td><td>All major organs formed; arms, legs, fingers visible</td></tr>
+            <tr><td>10</td><td>Kumquat</td><td>Officially a fetus; nails begin growing</td></tr>
+            <tr><td>12</td><td>Lime</td><td>Reflexes develop; kidneys produce urine</td></tr>
+            <tr><td>16</td><td>Avocado</td><td>Begins making facial expressions; skeleton hardens</td></tr>
+            <tr><td>18–20</td><td>Sweet potato</td><td>Hearing begins; may respond to sounds; anatomy scan</td></tr>
+            <tr><td>22</td><td>Papaya</td><td>Rapid brain development; eyes form but fused shut</td></tr>
+            <tr><td>24</td><td>Ear of corn</td><td>Viability milestone; lungs develop surfactant</td></tr>
+            <tr><td>28</td><td>Eggplant</td><td>Eyes open; REM sleep begins; brain folds deepen</td></tr>
+            <tr><td>32</td><td>Jicama</td><td>Practice breathing; gaining 0.5 lb/week; iron stores build</td></tr>
+            <tr><td>34</td><td>Butternut squash</td><td>Moves to head-down position; fingernails reach fingertips</td></tr>
+            <tr><td>36</td><td>Romaine lettuce head</td><td>Lungs nearly mature; most lanugo shed; brain growing fast</td></tr>
+            <tr><td>38</td><td>Leek</td><td>Full term; myelin covers nerves; meconium in intestines</td></tr>
+            <tr><td>40</td><td>Watermelon 🍉</td><td>Due date! Average 7–8 lbs, 19–21 inches long</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Brain Development Highlights</div>
+      <div class="g ga-sm">
+        <div class="nut-card"><h4>Weeks 1–8</h4><p>Neural tube closes. <strong>Folic acid</strong> is critical during this window.</p></div>
+        <div class="nut-card"><h4>Weeks 18–25</h4><p>Second trimester: hearing develops; responds to mother's voice. <strong>DHA</strong> supports auditory neural pathways.</p></div>
+        <div class="nut-card"><h4>Weeks 28–34</h4><p>Rapid synaptogenesis — 250,000 neurons/minute! <strong>Choline, DHA, iodine</strong> are critical now.</p></div>
+        <div class="nut-card"><h4>Weeks 35–40</h4><p>Brain triples in weight in last 13 weeks. Myelination begins; <strong>omega-3s</strong> essential.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kick Counter -->
+  <div class="tab-panel" id="trim-kickcount">
+    <div class="card">
+      <div class="card-title">👶 Daily Kick Counter</div>
+      <p class="t-mute mb-l">Start counting after week 28. Goal: <strong>10 movements within 2 hours</strong>. Tap the button each time you feel baby move.</p>
+      <div class="kick-wrap">
+        <div class="kick-num" id="kickCount">0</div>
+        <button class="kick-btn" onclick="recordKick()" title="Tap when baby moves">👶</button>
+        <div class="kick-status" id="kickStatus">Tap when you feel baby move</div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+          <button class="btn btn-s" onclick="resetKicks()">Reset Counter</button>
+          <button class="btn btn-g" onclick="startTimer()">⏱ Start 2-hr Timer</button>
+        </div>
+        <div id="timerDisplay" style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--clay);display:none"></div>
+      </div>
+      <div class="ib ib-g mt-l">
+        ⚠️ If you don't feel 10 movements in 2 hours, or if movement significantly decreases from your usual pattern, contact your healthcare provider immediately.
+      </div>
+    </div>
+  </div>
+
+</div>
+<footer class="footer"><div class="footer-logo">🌸 <em>Bloom</em> v2</div><div>Medical timeline based on ACOG, WHO &amp; NHS guidelines</div></footer>
+
+<script src="../js/core.js"></script>
+<script>
+// kick counter
+let kicks = 0, timerInterval = null;
+function recordKick() {
+  kicks++;
+  document.getElementById('kickCount').textContent = kicks;
+  if (kicks >= 10) {
+    document.getElementById('kickStatus').textContent = '🎉 Goal reached! 10 kicks recorded.';
+    document.getElementById('kickStatus').style.color = 'var(--sage)';
+  } else {
+    document.getElementById('kickStatus').textContent = `${10 - kicks} more kicks needed`;
+  }
+}
+function resetKicks() {
+  kicks = 0;
+  document.getElementById('kickCount').textContent = '0';
+  document.getElementById('kickStatus').textContent = 'Tap when you feel baby move';
+  document.getElementById('kickStatus').style.color = '';
+}
+function startTimer() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  let secs = 7200;
+  const display = document.getElementById('timerDisplay');
+  display.style.display = 'block';
+  timerInterval = setInterval(() => {
+    secs--;
+    const m = Math.floor(secs / 60), s = secs % 60;
+    display.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    if (secs <= 0) { clearInterval(timerInterval); display.textContent = '⏰ Time up!'; }
+  }, 1000);
+}
+window.addEventListener('DOMContentLoaded', () => {
+  const profile = getProfile();
+  if (profile.lmp) {
+    const w = getWeekFromLMP(profile.lmp);
+    document.getElementById('tlWeek').textContent = w;
+    const t = getTrimester(w);
+    const msgs = { 1:'You\'re in the First Trimester — focus on prenatal care and vitamins.', 2:'You\'re in the Second Trimester — the anatomy scan is coming up!', 3:'You\'re in the Third Trimester — prepare for birth and practice kick counts!' };
+    document.getElementById('tlTrimMessage').textContent = msgs[t] || '';
+  }
+});
+</script>
+</body>
+</html>

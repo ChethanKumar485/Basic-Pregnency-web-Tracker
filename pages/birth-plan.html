@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Birth Plan & Hospital Bag — Bloom v2</title>
+<link rel="stylesheet" href="../css/main.css"/>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🌸 <span>Bloom</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li><li><a href="timeline.html">Timeline</a></li>
+    <li><a href="nutrition.html">Nutrition</a></li><li><a href="weight.html">Weight</a></li>
+    <li><a href="activity.html">Activity</a></li><li><a href="sleep.html">Sleep</a></li>
+    <li><a href="warnings.html" class="warn-link">⚠ Warnings</a></li>
+    <li><a href="postpartum.html">Postpartum</a></li><li><a href="birth-plan.html" class="active">📋 Birth Plan</a></li><li><a href="ai-advisor.html">🤖 AI</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="page-wrap">
+  <a href="../index.html" class="back-link">← Dashboard</a>
+  <div class="ph">
+    <div class="eyebrow">Plan Ahead · Printable</div>
+    <div class="page-title">📋 Birth Plan &amp; <em>Hospital Bag</em></div>
+    <div class="page-sub">Build your birth preferences and pack your hospital bag — print or save for your provider.</div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('bag','bp',this)">🎒 Hospital Bag</button>
+    <button class="tab-btn" onclick="switchTab('plan','bp',this)">📝 Birth Preferences</button>
+  </div>
+
+  <div class="tab-panel active" id="bp-bag">
+    <div class="g g-3">
+      <div class="card c-clay">
+        <div class="card-title">👜 For Mom</div>
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="bag-id"/><span>ID, insurance card, hospital paperwork</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-gown"/><span>Comfortable robe / nightgown (front-opening for nursing)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-socks"/><span>Warm socks &amp; non-slip slippers</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-toiletries"/><span>Toiletries: toothbrush, hairbrush, lip balm</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-pads"/><span>Maternity pads (hospital usually provides, but pack extra)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-underwear"/><span>Dark, high-waisted disposable underwear</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-nursing-bra"/><span>Nursing bras (2)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-going-home"/><span>Going-home outfit (loose, comfortable)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-phone"/><span>Phone charger (long cable)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-snacks"/><span>Snacks for labour &amp; after (dates, nuts, energy bars)</span></li>
+        </ul>
+      </div>
+      <div class="card c-sage">
+        <div class="card-title">👶 For Baby</div>
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="bag-onesies"/><span>Onesies / sleepsuits (3–4, newborn + 0-3m)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-swaddle"/><span>Swaddle blankets (2–3)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-hat"/><span>Baby hat &amp; mittens</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-diapers"/><span>Newborn diapers (small pack)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-wipes"/><span>Wipes &amp; small towel</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-carseat"/><span>Car seat (installed &amp; inspected!)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-going-home-baby"/><span>Going-home outfit for baby</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-formula"/><span>Formula/bottle (if not exclusively breastfeeding)</span></li>
+        </ul>
+      </div>
+      <div class="card c-gold">
+        <div class="card-title">🤝 For Partner / Support</div>
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="bag-camera"/><span>Camera / extra phone storage</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-pchange"/><span>Change of clothes (1–2 sets)</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-pillow"/><span>Travel pillow &amp; blanket</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-psnacks"/><span>Snacks &amp; water bottle</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-cash"/><span>Cash/cards for parking, vending machines</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-playlist"/><span>Music playlist / earphones for labour</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="bag-contacts"/><span>Emergency contact list printed</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ib ib-c mt-l">💡 <strong>When to pack:</strong> Have your bag ready by week 36. Keep it near the door or in the car. Pack a smaller "labour bag" for items you'll need immediately, separate from the postpartum stay bag.</div>
+  </div>
+
+  <div class="tab-panel" id="bp-plan">
+    <div class="card">
+      <div class="card-title">📝 Birth Preferences Worksheet</div>
+      <p class="t-mute t-sm mb-l">Fill out your preferences below and discuss with your provider. Remember: birth can be unpredictable — these are preferences, not guarantees.</p>
+      <div class="g g-2">
+        <div class="form-group"><label class="form-label">Preferred Birth Location</label><input class="form-input" id="bp1" placeholder="Hospital / Birth center / Home"/></div>
+        <div class="form-group"><label class="form-label">Support People Present</label><input class="form-input" id="bp2" placeholder="Partner, doula, family member..."/></div>
+        <div class="form-group"><label class="form-label">Pain Management Preferences</label><input class="form-input" id="bp3" placeholder="Epidural, natural, nitrous oxide, breathing techniques..."/></div>
+        <div class="form-group"><label class="form-label">Mobility During Labour</label><input class="form-input" id="bp4" placeholder="Walking, birth ball, shower/tub access..."/></div>
+        <div class="form-group"><label class="form-label">Preferred Birthing Position</label><input class="form-input" id="bp5" placeholder="Upright, side-lying, squatting..."/></div>
+        <div class="form-group"><label class="form-label">Skin-to-Skin / Delayed Cord Clamping</label><input class="form-input" id="bp6" placeholder="Immediate skin-to-skin, delay cord clamping..."/></div>
+        <div class="form-group"><label class="form-label">Feeding Plan</label><input class="form-input" id="bp7" placeholder="Breastfeeding, formula, combination..."/></div>
+        <div class="form-group"><label class="form-label">If C-Section Becomes Necessary</label><input class="form-input" id="bp8" placeholder="Partner present, skin-to-skin in OR if possible..."/></div>
+      </div>
+      <div class="form-group mt-l"><label class="form-label">Additional Notes for Your Care Team</label><textarea class="form-input" id="bp9" rows="3" placeholder="Any allergies, cultural/religious preferences, special requests..."></textarea></div>
+      <div style="margin-top:1.2rem;display:flex;gap:.8rem;flex-wrap:wrap">
+        <button class="btn btn-p" onclick="saveBP()">💾 Save</button>
+        <button class="btn btn-s" onclick="printBP()">🖨️ Print / Save as PDF</button>
+      </div>
+      <div class="ib ib-l mt-l">⚠️ This worksheet is a communication tool. Always discuss your birth plan with your OB/midwife well before your due date.</div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="footer-logo">🌸 <em>Bloom</em> v2</div><div>Discuss your birth plan with your healthcare provider</div></footer>
+<script src="../js/core.js"></script>
+<script>
+function saveBP() {
+  const data = {};
+  for (let i=1;i<=9;i++) data['bp'+i] = document.getElementById('bp'+i).value;
+  localStorage.setItem('bloomBirthPlan', JSON.stringify(data));
+  alert('Birth plan saved!');
+}
+function printBP() { saveBP(); window.print(); }
+window.addEventListener('DOMContentLoaded', () => {
+  const d = JSON.parse(localStorage.getItem('bloomBirthPlan')||'{}');
+  for (let i=1;i<=9;i++) if(d['bp'+i]) document.getElementById('bp'+i).value = d['bp'+i];
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sleep — Bloom v2</title>
+<link rel="stylesheet" href="../css/main.css"/>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🌸 <span>Bloom</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li><li><a href="timeline.html">Timeline</a></li>
+    <li><a href="nutrition.html">Nutrition</a></li><li><a href="weight.html">Weight</a></li>
+    <li><a href="activity.html">Activity</a></li><li><a href="sleep.html" class="active">Sleep</a></li>
+    <li><a href="warnings.html" class="warn-link">⚠ Warnings</a></li>
+    <li><a href="postpartum.html">Postpartum</a></li><li><a href="birth-plan.html">📋 Birth Plan</a></li><li><a href="ai-advisor.html">🤖 AI</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="page-wrap">
+  <a href="../index.html" class="back-link">← Dashboard</a>
+  <div class="ph">
+    <div class="eyebrow">Sleep Safety · Comfort · Positions</div>
+    <div class="page-title">🌙 Sleep <em>Optimizer</em></div>
+    <div class="page-sub">Visual sleeping position guide, trimester-specific comfort hacks, and evidence-based safety rules.</div>
+  </div>
+
+  <!-- SOS BANNER -->
+  <div class="card mb-l" style="background:linear-gradient(135deg,#1a1410,#2d1f17);color:#fff;border:none;text-align:center">
+    <div style="font-size:3rem;margin-bottom:.8rem">🌙</div>
+    <div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--cream);margin-bottom:.5rem">The <em style="color:var(--clay-l)">SOS</em> Position</div>
+    <div style="color:rgba(250,246,240,.8);font-size:1.05rem;font-weight:600">Sleep On Side — preferably your LEFT side</div>
+    <div style="color:rgba(250,246,240,.55);font-size:.88rem;margin-top:.5rem;max-width:500px;margin-left:auto;margin-right:auto">Left-side sleeping increases blood and nutrient flow to the placenta, improves kidney function, and reduces ankle swelling. Recommended by ACOG for all trimesters.</div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('positions','sl',this)">🛌 Position Guide</button>
+    <button class="tab-btn" onclick="switchTab('comfort','sl',this)">🛋️ Comfort Hacks</button>
+    <button class="tab-btn" onclick="switchTab('hygiene','sl',this)">💤 Sleep Hygiene</button>
+    <button class="tab-btn" onclick="switchTab('safety','sl',this)">⚠️ Safety Rules</button>
+  </div>
+
+  <!-- POSITIONS -->
+  <div class="tab-panel active" id="sl-positions">
+    <div class="card mb-l"><div class="card-title">Visual Sleeping Position Guide</div>
+
+      <!-- BEST: LEFT SIDE -->
+      <div class="sleep-svg-wrap mb-l">
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-d);margin-bottom:.8rem">★ BEST: Left Side (SOS-L)</div>
+        <svg viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;width:100%">
+          <!-- Bed base -->
+          <rect x="10" y="150" width="500" height="20" rx="4" fill="#e8ddd0"/>
+          <rect x="10" y="140" width="500" height="12" rx="3" fill="#f0e8db"/>
+          <!-- Pillow -->
+          <ellipse cx="450" cy="100" rx="55" ry="32" fill="#e8b49a" opacity=".7"/>
+          <!-- Body lying on left side (facing right) -->
+          <!-- Torso/back curve -->
+          <path d="M 380 130 Q 300 128 200 132 Q 140 133 100 130" stroke="#c2714f" stroke-width="22" fill="none" stroke-linecap="round"/>
+          <!-- Head -->
+          <circle cx="430" cy="98" r="26" fill="#e8b49a"/>
+          <!-- Hair -->
+          <path d="M 415 78 Q 430 68 445 78" stroke="#8f4a2e" stroke-width="4" fill="none"/>
+          <!-- Baby bump (belly facing left) -->
+          <ellipse cx="250" cy="108" rx="38" ry="28" fill="#f5e6de" stroke="#e8b49a" stroke-width="2"/>
+          <!-- Baby inside -->
+          <circle cx="250" cy="108" r="16" fill="none" stroke="#c2714f" stroke-width="1.5" stroke-dasharray="3,3" opacity=".5"/>
+          <circle cx="254" cy="105" r="4" fill="#c2714f" opacity=".4"/>
+          <!-- Legs (bent, pillow between) -->
+          <path d="M 100 130 Q 80 155 70 145" stroke="#c2714f" stroke-width="16" fill="none" stroke-linecap="round"/>
+          <path d="M 100 130 Q 85 160 75 152" stroke="#e8b49a" stroke-width="12" fill="none" stroke-linecap="round" opacity=".6"/>
+          <!-- Pillow between legs -->
+          <ellipse cx="82" cy="152" rx="18" ry="10" fill="#e8b49a" opacity=".5" transform="rotate(-15,82,152)"/>
+          <!-- Arrow showing direction (left) -->
+          <text x="260" y="170" text-anchor="middle" font-size="11" fill="#6b8f71" font-weight="600">← Facing left / toward partner · Bump faces outward</text>
+          <!-- Labels -->
+          <text x="430" y="60" text-anchor="middle" font-size="11" fill="#8f4a2e">Head on pillow</text>
+          <text x="250" y="82" text-anchor="middle" font-size="11" fill="#8f4a2e">Baby bump</text>
+          <text x="82" y="138" text-anchor="middle" font-size="11" fill="#8f4a2e">Pillow between knees</text>
+        </svg>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="sleep-svg-wrap mb-l">
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7a5800;margin-bottom:.8rem">✓ GOOD: Right Side</div>
+        <svg viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;width:100%">
+          <rect x="10" y="150" width="500" height="20" rx="4" fill="#e8ddd0"/>
+          <rect x="10" y="140" width="500" height="12" rx="3" fill="#f0e8db"/>
+          <ellipse cx="80" cy="100" rx="55" ry="32" fill="#f0dba8" opacity=".7"/>
+          <path d="M 140 130 Q 220 128 320 132 Q 380 133 420 130" stroke="#c4973a" stroke-width="22" fill="none" stroke-linecap="round"/>
+          <circle cx="95" cy="98" r="26" fill="#f0dba8"/>
+          <path d="M 80 78 Q 95 68 110 78" stroke="#8a6120" stroke-width="4" fill="none"/>
+          <ellipse cx="280" cy="108" rx="38" ry="28" fill="#fdf5e0" stroke="#f0dba8" stroke-width="2"/>
+          <circle cx="280" cy="108" r="16" fill="none" stroke="#c4973a" stroke-width="1.5" stroke-dasharray="3,3" opacity=".5"/>
+          <circle cx="284" cy="105" r="4" fill="#c4973a" opacity=".4"/>
+          <path d="M 420 130 Q 440 155 450 145" stroke="#c4973a" stroke-width="16" fill="none" stroke-linecap="round"/>
+          <ellipse cx="445" cy="152" rx="18" ry="10" fill="#f0dba8" opacity=".5" transform="rotate(15,445,152)"/>
+          <text x="260" y="170" text-anchor="middle" font-size="11" fill="#7a5800" font-weight="600">Acceptable — switch to left side if possible after week 28</text>
+        </svg>
+      </div>
+
+      <!-- AVOID: BACK SLEEPING -->
+      <div class="sleep-svg-wrap mb-l" style="background:#fce8e8">
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--err);margin-bottom:.8rem">🚫 AVOID after Week 28: Back Sleeping (Supine)</div>
+        <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;width:100%">
+          <rect x="10" y="160" width="500" height="20" rx="4" fill="#e8ddd0"/>
+          <rect x="10" y="150" width="500" height="12" rx="3" fill="#f0e8db"/>
+          <ellipse cx="460" cy="120" rx="50" ry="28" fill="#ffb0b0" opacity=".6"/>
+          <!-- Body lying on back -->
+          <rect x="80" y="118" width="360" height="24" rx="12" fill="#ffb0b0"/>
+          <!-- Head -->
+          <circle cx="440" cy="118" r="26" fill="#ffb0b0"/>
+          <!-- Belly (facing up, large) -->
+          <ellipse cx="250" cy="108" rx="50" ry="38" fill="#fce8e8" stroke="#f08080" stroke-width="2"/>
+          <!-- Compression arrows pointing down -->
+          <line x1="250" y1="148" x2="250" y2="165" stroke="#b84040" stroke-width="2.5" marker-end="url(#arr)"/>
+          <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b84040"/></marker></defs>
+          <!-- Vena cava label -->
+          <text x="250" y="190" text-anchor="middle" font-size="11" fill="#b84040" font-weight="600">↓ Baby's weight compresses aorta &amp; vena cava → reduces blood flow to placenta</text>
+          <!-- Warning X -->
+          <circle cx="50" cy="130" r="22" fill="#b84040" opacity=".15"/>
+          <text x="50" y="137" text-anchor="middle" font-size="22" fill="#b84040">🚫</text>
+        </svg>
+      </div>
+
+      <!-- SEMI-RECLINED -->
+      <div class="sleep-svg-wrap">
+        <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:.8rem">💡 HELPFUL: Semi-Reclined (Heartburn/Breathlessness)</div>
+        <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;width:100%">
+          <rect x="10" y="165" width="500" height="20" rx="4" fill="#e8ddd0"/>
+          <!-- Angled pillow stack -->
+          <path d="M 380 165 L 480 165 L 480 80 Q 450 75 380 165 Z" fill="#e8b49a" opacity=".5"/>
+          <path d="M 380 165 L 465 165 L 465 95 Q 435 88 380 165 Z" fill="#e8b49a" opacity=".4"/>
+          <!-- Body at 45 degrees -->
+          <path d="M 100 165 Q 150 162 250 155 Q 320 148 400 110" stroke="#c2714f" stroke-width="22" fill="none" stroke-linecap="round"/>
+          <!-- Head (propped up) -->
+          <circle cx="415" cy="95" r="26" fill="#e8b49a"/>
+          <!-- Belly -->
+          <ellipse cx="230" cy="140" rx="36" ry="26" fill="#f5e6de" stroke="#e8b49a" stroke-width="2"/>
+          <!-- Angle indicator -->
+          <path d="M 260 165 Q 280 165 280 145" stroke="#6b8f71" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+          <text x="295" y="158" font-size="11" fill="#6b8f71">~45°</text>
+          <text x="260" y="192" text-anchor="middle" font-size="11" fill="#6b8f71" font-weight="600">Helps with heartburn, shortness of breath — safe all trimesters</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Position Rating Cards -->
+    <div class="sleep-pos-grid">
+      <div class="sleep-pos-card sp-best"><h4>⭐⭐⭐ Left Side</h4><p>Maximum blood flow to placenta and kidneys. Reduces liver pressure. Best for baby's oxygen delivery. <strong>Recommended position for all trimesters.</strong></p></div>
+      <div class="sleep-pos-card sp-good"><h4>⭐⭐ Right Side</h4><p>Acceptable alternative. Slight liver compression in late pregnancy but safe. Use if left side is uncomfortable.</p></div>
+      <div class="sleep-pos-card sp-caut"><h4>⭐ Semi-Reclined</h4><p>45° angle with pillow props. Excellent for heartburn, acid reflux, and shortness of breath (T3). Safe all trimesters.</p></div>
+      <div class="sleep-pos-card sp-avoid"><h4>🚫 Back Sleeping (after Wk 28)</h4><p>Baby's weight compresses the inferior vena cava and aorta → reduces blood return to heart, lowers BP, decreases placental flow.</p></div>
+    </div>
+  </div>
+
+  <!-- COMFORT HACKS -->
+  <div class="tab-panel" id="sl-comfort">
+    <div class="g ga-sm">
+      <div class="nut-card" style="border:2px solid var(--lav)"><h4>🤰 Pillow Between Knees</h4><p>Place a pillow between your knees when sleeping on your side. Aligns hips and spine, reducing lower back pain and hip pressure.</p><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">All trimesters</span></div>
+      <div class="nut-card" style="border:2px solid var(--lav)"><h4>🛏️ Pregnancy / Body Pillow</h4><p>C-shaped or U-shaped pillow supports belly, back, and legs simultaneously. Fewer position changes during the night.</p><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">T2 &amp; T3</span></div>
+      <div class="nut-card" style="border:2px solid var(--gold)"><h4>🔥 Heartburn Relief</h4><p>Prop upper body at 45° angle with 2–3 pillows. Avoid eating within 2–3 hours of bedtime. Eat small, frequent meals during the day.</p><span class="badge b-caut" style="margin-top:.5rem;display:inline-block">T2 &amp; T3</span></div>
+      <div class="nut-card" style="border:2px solid #5bb8d4"><h4>😮‍💨 Shortness of Breath</h4><p>Uterus grows and presses on diaphragm. Use extra pillows to raise head and upper back. Helps lungs expand more freely.</p><span class="badge b-caut" style="margin-top:.5rem;display:inline-block">T3</span></div>
+      <div class="nut-card" style="border:2px solid var(--sage)"><h4>🦵 Leg Cramps</h4><p>Stretch calf before bed. Dorsiflex foot (pull toes up) when cramp strikes. Magnesium-rich foods may help. Stay hydrated.</p><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">T2 &amp; T3</span></div>
+      <div class="nut-card" style="border:2px solid var(--clay)"><h4>🚽 Frequent Urination</h4><p>Reduce fluids 2 hours before bed (maintain daytime hydration). Lean forward when urinating to fully empty bladder.</p><span class="badge b-info" style="margin-top:.5rem;display:inline-block">All trimesters</span></div>
+      <div class="nut-card" style="border:2px solid var(--gold)"><h4>🌡️ Overheating</h4><p>Pregnancy raises core temperature. Sleep in a cool room (18–20°C). Use breathable cotton sheets and a lightweight duvet.</p><span class="badge b-clay" style="margin-top:.5rem;display:inline-block">All trimesters</span></div>
+      <div class="nut-card" style="border:2px solid var(--lav)"><h4>😰 Restless Leg Syndrome</h4><p>Common due to iron/folate deficiency. Light exercise, warm bath before bed, iron-rich foods, and magnesium may reduce symptoms.</p><span class="badge b-caut" style="margin-top:.5rem;display:inline-block">T2 &amp; T3</span></div>
+      <div class="nut-card" style="border:2px solid var(--sage)"><h4>🧠 Anxiety / Insomnia</h4><p>Common in pregnancy. Try guided meditation, progressive muscle relaxation, journaling worries before bed. Avoid screens 1 hour before sleep.</p><span class="badge b-info" style="margin-top:.5rem;display:inline-block">All trimesters</span></div>
+    </div>
+  </div>
+
+  <!-- SLEEP HYGIENE -->
+  <div class="tab-panel" id="sl-hygiene">
+    <div class="card">
+      <div class="card-title">💤 Pregnancy Sleep Hygiene Checklist</div>
+      <div class="g g-2">
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="sl-consistent"/><span>Keep consistent sleep and wake times daily</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="sl-dark"/><span>Keep bedroom dark, cool (18–20°C), and quiet</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="sl-screen"/><span>No screens (phone, TV) for 1 hour before bed</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="sl-caffeine"/><span>No caffeine after 2 PM</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="sl-nap"/><span>Nap 20–30 minutes in early afternoon if needed</span></li>
+        </ul>
+        <ul class="checklist">
+          <li class="cl-item"><input type="checkbox" data-key="sl-exercise"/><span>Exercise daily — finish 3+ hours before bedtime</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="sl-bath"/><span>Warm (not hot) bath before bed to relax muscles</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="sl-smallmeal"/><span>Light snack only — no large meals near bedtime</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="sl-kegel"/><span>Kegel exercises reduce nighttime urinary urgency</span></li>
+          <li class="cl-item"><input type="checkbox" data-key="sl-relax"/><span>Practice deep breathing or meditation before sleep</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAFETY RULES -->
+  <div class="tab-panel" id="sl-safety">
+    <div class="card c-err">
+      <div class="card-title">⚠️ After Week 28: Back Sleeping Warning</div>
+      <p style="line-height:1.8;margin-bottom:1rem;font-size:.9rem">Lying flat on your back in late pregnancy compresses the <strong>inferior vena cava</strong> (large vein returning blood from lower body to heart) and the <strong>aorta</strong>. This reduces:</p>
+      <div class="g g-2">
+        <ul style="padding-left:1.2rem;line-height:2.2;font-size:.88rem">
+          <li>Blood return to your heart → dizziness, low blood pressure, nausea</li>
+          <li>Blood flow and oxygen delivery to the placenta and baby</li>
+          <li>Kidney and liver blood supply</li>
+        </ul>
+        <div class="ib ib-g">💡 <strong>Don't panic if you wake up on your back.</strong> Simply roll to your side. Your body will usually wake you before harm occurs. A wedge pillow behind your back can prevent rolling over during sleep.</div>
+      </div>
+    </div>
+    <div class="card c-sage mt-l">
+      <div class="card-title">✅ Safe Sleep Positions Summary</div>
+      <div class="t-wrap"><table class="data-table"><thead><tr><th>Position</th><th>T1 (Wks 1–13)</th><th>T2 (Wks 14–27)</th><th>T3 (Wks 28–40)</th></tr></thead><tbody>
+        <tr><td><strong>Left side</strong></td><td><span class="badge b-safe">Best ✓</span></td><td><span class="badge b-safe">Best ✓</span></td><td><span class="badge b-safe">Best ✓</span></td></tr>
+        <tr><td><strong>Right side</strong></td><td><span class="badge b-safe">Good ✓</span></td><td><span class="badge b-safe">Good ✓</span></td><td><span class="badge b-caut">Acceptable</span></td></tr>
+        <tr><td><strong>Semi-reclined (45°)</strong></td><td><span class="badge b-safe">Good ✓</span></td><td><span class="badge b-safe">Good ✓</span></td><td><span class="badge b-safe">Good ✓</span></td></tr>
+        <tr><td><strong>Stomach</strong></td><td><span class="badge b-caut">OK early</span></td><td><span class="badge b-avoid">Uncomfortable</span></td><td><span class="badge b-avoid">Avoid</span></td></tr>
+        <tr><td><strong>Flat on back</strong></td><td><span class="badge b-caut">OK</span></td><td><span class="badge b-caut">Avoid late T2</span></td><td><span class="badge b-avoid">AVOID</span></td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="footer-logo">🌸 <em>Bloom</em> v2</div><div>Sleep guidance based on ACOG and NHS recommendations · Consult your healthcare provider</div></footer>
+<script src="../js/core.js"></script>
+</body>
+</html>

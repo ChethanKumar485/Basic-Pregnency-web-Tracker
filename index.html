@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Bloom v2 — Maternal Wellness</title>
+<link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🌸 <span>Bloom</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="pages/timeline.html">Timeline</a></li>
+    <li><a href="pages/nutrition.html">Nutrition</a></li>
+    <li><a href="pages/weight.html">Weight</a></li>
+    <li><a href="pages/activity.html">Activity</a></li>
+    <li><a href="pages/sleep.html">Sleep</a></li>
+    <li><a href="pages/warnings.html" class="warn-link">⚠ Warnings</a></li>
+    <li><a href="pages/postpartum.html">Postpartum</a></li>
+    <li><a href="pages/birth-plan.html">📋 Birth Plan</a></li><li><a href="pages/ai-advisor.html">🤖 AI Advisor</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="page-wrap">
+  <div class="hero">
+    <div style="position:relative;z-index:1">
+      <div class="h-tag">🌸 Your Pregnancy Companion</div>
+      <div class="h-title">Every <em>bloom</em> of your<br/>maternal journey</div>
+      <div class="h-sub">Science-backed nutrition, activity, sleep, fetal milestones and safety — from conception through the fourth trimester.</div>
+      <div class="h-actions">
+        <a href="pages/nutrition.html" class="btn btn-p">12-Month Plan</a>
+        <a href="pages/warnings.html" class="btn btn-err">⚠ Emergency Signs</a>
+      </div>
+    </div>
+    <div class="h-visual">
+      <div class="ring-wrap">
+        <svg width="165" height="165" viewBox="0 0 165 165" style="transform:rotate(-90deg)">
+          <circle cx="82.5" cy="82.5" r="70" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/>
+          <circle cx="82.5" cy="82.5" r="70" fill="none" stroke="var(--clay-l)" stroke-width="6"
+            stroke-linecap="round" stroke-dasharray="0 440" id="progressRingFill"
+            style="transition:stroke-dasharray 1.2s cubic-bezier(.16,1,.3,1)"/>
+        </svg>
+        <div class="ring-center">
+          <div class="ring-wk" id="heroWeek">--</div>
+          <div class="ring-sub">WEEKS</div>
+          <div style="font-size:.6rem;color:rgba(250,246,240,.38);margin-top:.15rem" id="ringPct">0%</div>
+        </div>
+      </div>
+      <div class="h-stats">
+        <div class="h-stat"><div class="h-stat-v" id="heroDays">--</div><div class="h-stat-l">Days Left</div></div>
+        <div class="h-stat"><div class="h-stat-v" id="heroTri">--</div><div class="h-stat-l">Trimester</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="setup-wrap mb-l" id="setupSection">
+    <div class="setup-title">Set Up Your Profile</div>
+    <p class="t-mute" style="margin-bottom:1.5rem">Enter your details — Bloom personalises every recommendation based on your week, BMI, and diet preference.</p>
+    <div class="form-grid">
+      <div class="form-group"><label class="form-label">Last Menstrual Period (LMP)</label><input type="date" id="lmpDate" class="form-input"/></div>
+      <div class="form-group"><label class="form-label">Pre-pregnancy Weight (kg)</label><input type="number" id="preWeight" class="form-input" placeholder="e.g. 62"/></div>
+      <div class="form-group"><label class="form-label">Height (cm)</label><input type="number" id="heightCm" class="form-input" placeholder="e.g. 160"/></div>
+      <div class="form-group"><label class="form-label">Current Weight (kg)</label><input type="number" id="currWeight" class="form-input" placeholder="e.g. 65"/></div>
+      <div class="form-group"><label class="form-label">Diet Preference</label>
+        <select id="dietType" class="form-input">
+          <option value="veg">🌿 Vegetarian</option>
+          <option value="nonveg">🍗 Non-Vegetarian</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin-top:1.4rem;display:flex;gap:.8rem;flex-wrap:wrap">
+      <button class="btn btn-p" onclick="saveProfile()">💾 Save &amp; Personalise</button>
+      <button class="btn btn-g" onclick="clearProfile()">Clear</button>
+    </div>
+    <div id="profileResult" class="profile-result hidden"></div>
+  </div>
+
+  <div class="g g-4 mb-l">
+    <div class="stat-card"><div class="stat-val" id="statWeek">--</div><div class="stat-label">Weeks Pregnant</div></div>
+    <div class="stat-card"><div class="stat-val" id="statDays">--</div><div class="stat-label">Days Until Due</div></div>
+    <div class="stat-card"><div class="stat-val" id="statTrim">--</div><div class="stat-label">Current Trimester</div></div>
+    <div class="stat-card"><div class="stat-val" id="statBMI">--</div><div class="stat-label">Pre-pregnancy BMI</div></div>
+  </div>
+
+  <div class="sec-head"><div class="sec-title">Your Wellness Modules</div></div>
+  <div class="g ga mb-l">
+    <a href="pages/timeline.html" class="module-card"><div class="mod-bar" style="background:linear-gradient(90deg,var(--lav),var(--lav-l))"></div><div class="mod-icon">🗓️</div><h3>Pregnancy Timeline</h3><p>Trimester checklists, fetal milestones, medical tasks &amp; kick counter</p><div class="mod-arr">Explore →</div></a>
+    <a href="pages/nutrition.html" class="module-card"><div class="mod-bar" style="background:linear-gradient(90deg,var(--sage),var(--sage-l))"></div><div class="mod-icon">🥗</div><h3>12-Month Nutrition Plan</h3><p>Full veg &amp; non-veg meal plans for all 12 months based on research</p><div class="mod-arr">Explore →</div></a>
+    <a href="pages/weight.html" class="module-card"><div class="mod-bar" style="background:linear-gradient(90deg,var(--gold),var(--gold-l))"></div><div class="mod-icon">⚖️</div><h3>Weight Tracker</h3><p>BMI-specific targets, weekly log with interactive chart</p><div class="mod-arr">Explore →</div></a>
+    <a href="pages/activity.html" class="module-card"><div class="mod-bar" style="background:linear-gradient(90deg,#5bb8d4,#a0d4e8)"></div><div class="mod-icon">🏃‍♀️</div><h3>Physical Activity</h3><p>Safe exercises, 150-min weekly goal, Talk Test &amp; Kegel timer</p><div class="mod-arr">Explore →</div></a>
+    <a href="pages/sleep.html" class="module-card"><div class="mod-bar" style="background:linear-gradient(90deg,var(--lav),var(--lav-l))"></div><div class="mod-icon">🌙</div><h3>Sleep Optimizer</h3><p>Visual SVG sleeping position diagrams with comfort hacks</p><div class="mod-arr">Explore →</div></a>
+    <a href="pages/warnings.html" class="module-card"><div class="mod-bar" style="background:linear-gradient(90deg,var(--err),#f08080)"></div><div class="mod-icon">🚨</div><h3>Warning Signs</h3><p>Interactive symptom checker — seek care immediately if any match</p><div class="mod-arr">Explore →</div></a>
+    <a href="pages/postpartum.html" class="module-card"><div class="mod-bar" style="background:linear-gradient(90deg,var(--gold),#e8c87a)"></div><div class="mod-icon">🤱</div><h3>Postpartum Care</h3><p>Fourth trimester recovery, lochia tracker &amp; mental health screen</p><div class="mod-arr">Explore →</div></a>
+    <a href="pages/ai-advisor.html" class="module-card"><div class="mod-bar" style="background:linear-gradient(90deg,var(--clay),var(--clay-l))"></div><div class="mod-icon">🤖</div><h3>AI Advisor</h3><p>Upload food/exercise photos for instant pregnancy-safe guidance</p><div class="mod-arr">Explore →</div></a>
+    <a href="pages/birth-plan.html" class="module-card"><div class="mod-bar" style="background:linear-gradient(90deg,var(--clay-d),var(--gold))"></div><div class="mod-icon">📋</div><h3>Birth Plan &amp; Hospital Bag</h3><p>Printable checklists and a birth preferences worksheet to discuss with your provider</p><div class="mod-arr">Explore →</div></a>
+  </div>
+
+  <div class="sec-head mt-xl"><div class="sec-title">Today's Reminders</div></div>
+  <div id="tipsPanel" class="g ga-sm"></div>
+</div>
+
+<footer class="footer">
+  <div class="footer-logo">🌸 <em>Bloom</em> v2</div>
+  <div>Always consult your healthcare provider · Not a substitute for professional medical advice</div>
+</footer>
+<script src="js/core.js"></script>
+<script>
+function saveProfile(){
+  const lmp=document.getElementById('lmpDate').value;
+  const preW=parseFloat(document.getElementById('preWeight').value);
+  const ht=parseFloat(document.getElementById('heightCm').value);
+  const curW=parseFloat(document.getElementById('currWeight').value);
+  const diet=document.getElementById('dietType').value;
+  if(!lmp){alert('Please enter your LMP date.');return;}
+  const p={lmp,preWeight:preW,height:ht,currWeight:curW,diet};
+  setProfile(p);
+  const w=getWeekFromLMP(lmp),tri=getTrimester(w),due=getDueDate(lmp),bmi=getBMI(preW,ht);
+  const bmiC=bmi?getBMICategory(bmi):null,wtG=bmi?getWeightGainTarget(bmi):null;
+  const gained=curW&&preW?(curW-preW).toFixed(1):null,cal=getExtraCalories(tri),days=getDaysLeft(lmp);
+  const res=document.getElementById('profileResult');
+  res.classList.remove('hidden');
+  res.innerHTML=`
+    <div class="pr-row">✅ <strong>Pregnancy Week</strong> Week ${w} — Trimester ${tri}</div>
+    <div class="pr-row">🗓️ <strong>Estimated Due Date</strong> ${due.toDateString()}</div>
+    <div class="pr-row">⏳ <strong>Days Remaining</strong> ${days} days</div>
+    ${bmi?`<div class="pr-row">⚖️ <strong>Pre-pregnancy BMI</strong> ${bmi} — ${bmiC.label}</div>`:''}
+    ${wtG?`<div class="pr-row">🎯 <strong>Weight Gain Target</strong> ${wtG.label}</div>`:''}
+    <div class="pr-row">🍽️ <strong>Extra Calories</strong> +${cal} kcal/day this trimester</div>
+    ${gained?`<div class="pr-row">📊 <strong>Gained So Far</strong> ${gained} kg</div>`:''}
+    <div class="pr-row">🌿 <strong>Diet</strong> ${diet==='veg'?'Vegetarian 🌿':'Non-Vegetarian 🍗'}</div>`;
+  refreshHeroStats(p);
+  buildTips(w,tri,bmi,diet);
+}
+function clearProfile(){localStorage.removeItem('bloomProfile_v2');document.getElementById('profileResult').classList.add('hidden');['lmpDate','preWeight','heightCm','currWeight'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''});}
+function buildTips(w,tri,bmi,diet){
+  const tips=[];
+  if(w<=13)tips.push({icon:'🌿',t:'Take folic acid 400–800 mcg daily — critical for neural tube closure.',cls:'c-sage'});
+  if(w>=14&&w<=27)tips.push({icon:'🔬',t:'Anatomy scan at week 20 — book your appointment now.',cls:'c-clay'});
+  if(w>=24&&w<=28)tips.push({icon:'🍬',t:'Gestational diabetes screening (glucose test) due weeks 24–28.',cls:'c-gold'});
+  if(w>=27&&w<=36)tips.push({icon:'💉',t:'Tdap vaccine recommended weeks 27–36 to protect newborn.',cls:'c-lav'});
+  if(w>=28)tips.push({icon:'👶',t:'Daily kick counts: aim for 10 movements in 2 hours.',cls:'c-clay'});
+  if(w>=28)tips.push({icon:'🛌',t:'Sleep on left side (SOS position) — best for placental blood flow.',cls:'c-sage'});
+  if(bmi>=30)tips.push({icon:'⚖️',t:`BMI ≥30: Target only 5–9 kg total gain. +${getExtraCalories(tri)} kcal/day.`,cls:'c-gold'});
+  tips.push({icon:'🏃‍♀️',t:'Aim for 150 min moderate activity this week — brisk walking counts!',cls:'c-sage'});
+  if(diet==='veg')tips.push({icon:'🌿',t:'Vegetarians: supplement Vitamin B12 — not available in plant foods.',cls:'c-lav'});
+  tips.push({icon:'💧',t:'Drink 8–10 glasses of water daily. Dehydration triggers Braxton Hicks.',cls:'c-clay'});
+  document.getElementById('tipsPanel').innerHTML=tips.slice(0,6).map(t=>`<div class="card ${t.cls}" style="display:flex;gap:1rem;align-items:flex-start"><span style="font-size:1.5rem;flex-shrink:0">${t.icon}</span><span style="font-size:.83rem;line-height:1.6">${t.t}</span></div>`).join('');
+}
+window.addEventListener('DOMContentLoaded',()=>{
+  const p=getProfile();
+  if(p.lmp){
+    document.getElementById('lmpDate').value=p.lmp;
+    if(p.preWeight)document.getElementById('preWeight').value=p.preWeight;
+    if(p.height)document.getElementById('heightCm').value=p.height;
+    if(p.currWeight)document.getElementById('currWeight').value=p.currWeight;
+    if(p.diet)document.getElementById('dietType').value=p.diet;
+    refreshHeroStats(p);
+    buildTips(getWeekFromLMP(p.lmp),getTrimester(getWeekFromLMP(p.lmp)),getBMI(p.preWeight,p.height),p.diet||'veg');
+  }
+});
+</script>
+</body>
+</html>

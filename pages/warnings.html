@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warnings — Bloom v2</title>
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🌸 <span>Bloom</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li><li><a href="timeline.html" >Timeline</a></li>
+    <li><a href="nutrition.html" >Nutrition</a></li><li><a href="weight.html" >Weight</a></li>
+    <li><a href="activity.html" >Activity</a></li><li><a href="sleep.html" >Sleep</a></li>
+    <li><a href="warnings.html" class="warn-link active">⚠ Warnings</a></li>
+    <li><a href="postpartum.html" >Postpartum</a></li><li><a href="birth-plan.html">📋 Birth Plan</a></li><li><a href="ai-advisor.html">🤖 AI</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<div class="page-wrap">
+  <a href="../index.html" class="back-link">← Dashboard</a>
+  <div class="ph">
+    <div class="eyebrow">Emergency Symptom Checker</div>
+    <div class="page-title">🚨 Urgent <em>Warning Signs</em></div>
+    <div class="page-sub">Select any symptom you are experiencing. If you select a warning sign, seek medical care immediately.</div>
+  </div>
+<div class="card" style="background:#fff5f5;border:2px solid #ffb0b0;text-align:center;margin-bottom:1.5rem">
+    <div style="font-size:2.5rem">⚠️</div>
+    <h2 style="color:var(--clay-d)">Emergency Symptom Checker</h2>
+    <p style="color:var(--text-muted)">Tap any symptom you are experiencing right now. This is not a substitute for emergency care.</p>
+    <p style="margin-top:0.5rem"><strong style="color:var(--clay-d)">If you believe you are in danger, call emergency services immediately (112 / 911).</strong></p>
+  </div>
+
+  <!-- Symptom Cards -->
+  <h2 class="sec-title" style="color:var(--clay-d)">Head / Neurological</h2>
+  <div class="g ga">
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🤯</div>
+      <h3>Severe "Thunderclap" Headache</h3>
+      <p>Sudden, very severe headache that feels like a "clap of thunder" — worst headache of your life. Does not improve with paracetamol.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >😵</div>
+      <h3>Persistent Severe Headache</h3>
+      <p>Headache that does not go away with rest or treatment. Could indicate dangerously high blood pressure or preeclampsia.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >💫</div>
+      <h3>Dizziness / Fainting</h3>
+      <p>Sudden lightheadedness, loss of balance, or fainting — especially combined with headache or vision changes.</p>
+    </div>
+  </div>
+
+  <h2 class="sec-title" style="color:var(--clay-d);margin-top:2rem">Vision Changes</h2>
+  <div class="g ga">
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >⚡</div>
+      <h3>Flashing Lights / Floaters</h3>
+      <p>Seeing flashes of light, spots, stars, or visual "auras" that weren't there before. Can signal preeclampsia affecting the brain.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🔵</div>
+      <h3>Blind Spots / Tunnel Vision</h3>
+      <p>Loss of vision in part of your visual field, or vision suddenly narrowing. Seek emergency care immediately.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >👁️</div>
+      <h3>Blurred / Double Vision</h3>
+      <p>Vision suddenly becoming blurry or doubled, especially alongside headache or high blood pressure.</p>
+    </div>
+  </div>
+
+  <h2 class="sec-title" style="color:var(--clay-d);margin-top:2rem">Physical / Body Symptoms</h2>
+  <div class="g ga">
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🌡️</div>
+      <h3>Fever ≥ 100.4°F / 38°C</h3>
+      <p>Any fever during pregnancy is concerning. High fever can affect fetal neurological development and may indicate infection or chorioamnionitis.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🫁</div>
+      <h3>Trouble Breathing / Chest Pain</h3>
+      <p>Sudden shortness of breath, chest tightness, or pain — especially at rest. Could indicate pulmonary embolism or cardiac issue.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🫀</div>
+      <h3>Rapid / Irregular Heartbeat</h3>
+      <p>Heart racing, fluttering, or skipping beats in a way that feels alarming or doesn't stop.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🤲</div>
+      <h3>Severe Swelling of Hands/Face</h3>
+      <p>Sudden, extreme swelling — especially puffiness around the eyes and face — is a key warning sign of preeclampsia.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🤢</div>
+      <h3>Severe Abdominal / Upper Right Pain</h3>
+      <p>Persistent, severe pain in the upper right abdomen (under the ribs) can indicate HELLP syndrome or liver problems related to preeclampsia.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🤸</div>
+      <h3>Seizure or Convulsions</h3>
+      <p>Any seizure during pregnancy is a medical emergency. Eclampsia (seizure with preeclampsia) is life-threatening. Call 112/911 immediately.</p>
+    </div>
+  </div>
+
+  <h2 class="sec-title" style="color:var(--clay-d);margin-top:2rem">Pregnancy-Specific Signs</h2>
+  <div class="g ga">
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🩸</div>
+      <h3>Vaginal Bleeding (More Than Spotting)</h3>
+      <p>Any significant bleeding during pregnancy should be evaluated immediately. Could indicate placenta previa, placental abruption, or miscarriage.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >💧</div>
+      <h3>Fluid Leaking / Gush</h3>
+      <p>Sudden gush or steady trickle of clear fluid from the vagina — your water may have broken (PROM). Seek care immediately to prevent infection.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >👶</div>
+      <h3>Significant Decrease in Fetal Movement</h3>
+      <p>After week 28, if you feel significantly fewer kicks than usual, or no movement for 2+ hours during your baby's usual active time — seek care immediately.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >⏱️</div>
+      <h3>Regular Contractions Before Week 37</h3>
+      <p>Regular, painful contractions before 37 weeks could be preterm labor. 6+ contractions per hour = seek emergency care now.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🦷</div>
+      <h3>Signs of Preeclampsia (Combined)</h3>
+      <p>Combination of: headache + vision changes + swelling + high blood pressure. This is a medical emergency requiring immediate hospitalization.</p>
+    </div>
+    <div class="warn-card" onclick="selectWarning(this)">
+      <div >🔥</div>
+      <h3>Burning / Painful Urination</h3>
+      <p>Signs of UTI — common in pregnancy and can lead to kidney infection (pyelonephritis) if untreated, which can trigger preterm labor.</p>
+    </div>
+  </div>
+
+  <!-- Alert Banner -->
+  <div class="alert-banner" id="alertBanner">
+    🚨 YOU SELECTED A WARNING SIGN — SEEK MEDICAL CARE IMMEDIATELY!<br/>
+    <span style="font-size:0.92rem;font-weight:400;margin-top:0.5rem;display:block">Call your OB/midwife, go to the nearest emergency room, or dial 112 / 911.<br/>Do not drive yourself if you are experiencing vision changes, seizure, or severe symptoms.</span>
+    <button onclick="clearWarnings()" style="margin-top:1rem;padding:0.6rem 1.4rem;background:white;color:#c04a56;border:none;border-radius:100px;font-weight:600;cursor:pointer">Clear Selections</button>
+  </div>
+
+  <!-- Preeclampsia Info -->
+  <div class="card" style="margin-top:2rem">
+    <div class="card-title">What is Preeclampsia?</div>
+    <p style="line-height:1.8;margin-bottom:1rem">Preeclampsia is a serious pregnancy complication characterized by high blood pressure (≥140/90 mmHg) and signs of damage to organ systems, most often the liver and kidneys. It typically occurs after 20 weeks of pregnancy.</p>
+    <div class="g g-2">
+      <div>
+        <h3>Warning Signs</h3>
+        <ul style="padding-left:1.2rem;line-height:2;font-size:0.9rem">
+          <li>High blood pressure (≥140/90 mmHg)</li>
+          <li>Protein in urine (proteinuria)</li>
+          <li>Severe headache</li>
+          <li>Vision changes (floaters, flashes)</li>
+          <li>Upper right abdominal pain</li>
+          <li>Sudden weight gain from fluid retention</li>
+          <li>Swelling of face and hands</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Risk Factors</h3>
+        <ul style="padding-left:1.2rem;line-height:2;font-size:0.9rem">
+          <li>First pregnancy</li>
+          <li>BMI ≥ 30 (obesity)</li>
+          <li>Multiple pregnancy (twins/triplets)</li>
+          <li>Age &lt;20 or &gt;35</li>
+          <li>History of hypertension or kidney disease</li>
+          <li>Previous preeclampsia</li>
+          <li>Diabetes, lupus, or rheumatoid arthritis</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ib ib-g mt-l">⚠️ Preeclampsia can progress to eclampsia (seizures), HELLP syndrome, and organ failure. It is one of the leading causes of maternal mortality. Regular prenatal blood pressure checks are essential.</div>
+  </div>
+
+  <!-- Emergency Contacts -->
+  <div class="card" style="border:2px solid var(--clay)">
+    <div class="card-title">📞 Emergency Contacts</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">My OB / Midwife</label>
+        <input type="tel" id="obContact" class="form-input" placeholder="Phone number" oninput="saveContacts()" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Hospital / Birth Center</label>
+        <input type="tel" id="hospitalContact" class="form-input" placeholder="Phone number" oninput="saveContacts()" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Emergency Contact (Partner/Family)</label>
+        <input type="tel" id="partnerContact" class="form-input" placeholder="Phone number" oninput="saveContacts()" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">National Emergency (pre-filled)</label>
+        <input type="tel" class="form-input" value="112 / 911" readonly style="opacity:0.7" />
+      </div>
+    </div>
+  </div>
+
+</div>
+<footer class="footer"><div class="footer-logo">🌸 <em>Bloom</em> v2</div><div>This tool does not replace emergency care. Call 112/911 immediately if needed.</div></footer>
+<script src="../js/core.js"></script>
+<script>
+function selectWarning(el) {
+  el.classList.toggle('selected');
+  const anySelected = document.querySelectorAll('.warning-card.selected').length > 0;
+  const banner = document.getElementById('alertBanner');
+  banner.style.display = anySelected ? 'block' : 'none';
+  if (anySelected) banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function clearWarnings() {
+  document.querySelectorAll('.warning-card.selected').forEach(c => c.classList.remove('selected'));
+  document.getElementById('alertBanner').style.display = 'none';
+}
+function saveContacts() {
+  const c = {
+    ob: document.getElementById('obContact').value,
+    hospital: document.getElementById('hospitalContact').value,
+    partner: document.getElementById('partnerContact').value
+  };
+  localStorage.setItem('bloomContacts', JSON.stringify(c));
+}
+window.addEventListener('DOMContentLoaded', () => {
+  const c = JSON.parse(localStorage.getItem('bloomContacts') || '{}');
+  if (c.ob) document.getElementById('obContact').value = c.ob;
+  if (c.hospital) document.getElementById('hospitalContact').value = c.hospital;
+  if (c.partner) document.getElementById('partnerContact').value = c.partner;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weight — Bloom v2</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🌸 <span>Bloom</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li><li><a href="timeline.html" >Timeline</a></li>
+    <li><a href="nutrition.html" >Nutrition</a></li><li><a href="weight.html" class="active">Weight</a></li>
+    <li><a href="activity.html" >Activity</a></li><li><a href="sleep.html" >Sleep</a></li>
+    <li><a href="warnings.html" class="warn-link">⚠ Warnings</a></li>
+    <li><a href="postpartum.html" >Postpartum</a></li><li><a href="birth-plan.html">📋 Birth Plan</a></li><li><a href="ai-advisor.html">🤖 AI</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<div class="page-wrap">
+  <a href="../index.html" class="back-link">← Dashboard</a>
+  <div class="ph">
+    <div class="eyebrow">IOM Guidelines · BMI-Based Targets</div>
+    <div class="page-title">⚖️ Weight <em>Tracker</em></div>
+    <div class="page-sub">BMI-specific weight gain targets with weekly logging and interactive chart.</div>
+  </div>
+<!-- BMI Summary -->
+  <div class="g g-2">
+    <div class="card" id="bmiCard">
+      <div class="card-title">Your Weight Profile</div>
+      <div id="bmiSummary" class="t-mute">Set your profile on the dashboard to see personalized targets.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Calorie Guide by Trimester</div>
+      <table class="data-table">
+        <thead><tr><th>Trimester</th><th>Weeks</th><th>Extra Calories</th></tr></thead>
+        <tbody>
+          <tr><td>1st</td><td>1–13</td><td><strong>+0 kcal/day</strong></td></tr>
+          <tr><td>2nd</td><td>14–27</td><td><strong>+200 kcal/day</strong></td></tr>
+          <tr><td>3rd</td><td>28–40</td><td><strong>+400 kcal/day</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="ib ib-s mt-l" id="calBox">Load your profile to see your current trimester's recommendation.</div>
+    </div>
+  </div>
+
+  <!-- Weight Gain Targets by BMI -->
+  <div class="card">
+    <div class="card-title">Recommended Weight Gain by Pre-pregnancy BMI</div>
+    <table class="data-table">
+      <thead><tr><th>BMI Category</th><th>BMI Range</th><th>Recommended Total Gain</th><th>T2/T3 Weekly</th></tr></thead>
+      <tbody>
+        <tr><td>Underweight</td><td>&lt;18.5</td><td>12.5–18 kg (28–40 lbs)</td><td>~0.5 kg/wk</td></tr>
+        <tr><td>Normal weight</td><td>18.5–24.9</td><td>11.5–16 kg (25–35 lbs)</td><td>~0.45 kg/wk</td></tr>
+        <tr><td>Overweight</td><td>25–29.9</td><td>7–11.5 kg (15–25 lbs)</td><td>~0.3 kg/wk</td></tr>
+        <tr><td>Obese (BMI 30+)</td><td>≥30</td><td><strong>5–9 kg (11–20 lbs)</strong></td><td>~0.2 kg/wk</td></tr>
+      </tbody>
+    </table>
+    <div class="ib ib-g mt-l">
+      ⚠️ For women with BMI ≥ 30: target a maximum of <strong>11–20 lbs (5–9 kg)</strong> total gain. Excessive gain increases risk of gestational diabetes, hypertension, C-section, and large-for-gestational-age baby.
+    </div>
+  </div>
+
+  <!-- Log Entry -->
+  <div class="card">
+    <div class="card-title">📝 Log Weekly Weight</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Week of Pregnancy</label>
+        <input type="number" id="logWeek" class="form-input" min="1" max="42" placeholder="e.g. 24" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Current Weight (kg)</label>
+        <input type="number" id="logWeight" class="form-input" step="0.1" placeholder="e.g. 70.5" />
+      </div>
+    </div>
+    <button class="btn btn-p" onclick="logWeight()">Add Entry</button>
+    <button class="btn btn-g" style="margin-left:0.8rem" onclick="clearLogs()">Clear All Logs</button>
+  </div>
+
+  <!-- Chart -->
+  <div class="card">
+    <div class="card-title">📊 Weight Gain Chart</div>
+    <div class="t-wrap">
+      <canvas id="weightChart" height="300"></canvas>
+    </div>
+    <div id="chartStatus" class="t-mute mt-l" style="font-size:0.85rem">Log your weekly weights above to see your progress chart.</div>
+  </div>
+
+  <!-- Log Table -->
+  <div class="card">
+    <div class="card-title">📋 Weight Log</div>
+    <div id="weightLogTable">
+      <p class="t-mute">No entries yet. Start logging above.</p>
+    </div>
+  </div>
+
+</div>
+<footer class="footer"><div class="footer-logo">🌸 <em>Bloom</em> v2</div><div>Weight gain targets based on IOM 2009 guidelines</div></footer>
+<script src="../js/core.js"></script>
+<script>
+let chart = null;
+
+function getWeightLog() {
+  return JSON.parse(localStorage.getItem('bloomWeightLog') || '[]');
+}
+function saveWeightLog(log) {
+  localStorage.setItem('bloomWeightLog', JSON.stringify(log));
+}
+
+function logWeight() {
+  const week = parseInt(document.getElementById('logWeek').value);
+  const weight = parseFloat(document.getElementById('logWeight').value);
+  if (!week || !weight || week < 1 || week > 42) { alert('Enter valid week (1–42) and weight.'); return; }
+  const log = getWeightLog();
+  const idx = log.findIndex(e => e.week === week);
+  if (idx >= 0) log[idx].weight = weight;
+  else log.push({ week, weight });
+  log.sort((a, b) => a.week - b.week);
+  saveWeightLog(log);
+  renderAll();
+}
+
+function clearLogs() {
+  if (confirm('Clear all weight logs?')) { localStorage.removeItem('bloomWeightLog'); renderAll(); }
+}
+
+function renderAll() {
+  const profile = getProfile();
+  const log = getWeightLog();
+  const preW = parseFloat(profile.preWeight) || null;
+
+  // BMI summary
+  const bmi = getBMI(profile.preWeight, profile.height);
+  const bmiCat = bmi ? getBMICategory(bmi) : '';
+  const wtTarget = bmi ? getWeightGainTarget(bmi) : null;
+  const week = profile.lmp ? getWeekFromLMP(profile.lmp) : null;
+  const trimester = week ? getTrimester(week) : null;
+  const extraCal = trimester ? getExtraCalories(trimester) : 0;
+
+  document.getElementById('bmiSummary').innerHTML = bmi ? `
+    <strong>Pre-pregnancy BMI:</strong> ${bmi} (${bmiCat})<br/>
+    <strong>Pre-pregnancy Weight:</strong> ${profile.preWeight} kg<br/>
+    <strong>Current Week:</strong> ${week || '--'}<br/>
+    <strong>Weight Gain Target:</strong> ${wtTarget?.label || '--'}<br/>
+    ${log.length && preW ? `<strong>Gained So Far:</strong> ${(log[log.length-1].weight - preW).toFixed(1)} kg` : ''}
+  ` : 'Set your profile on the dashboard.';
+
+  document.getElementById('calBox').textContent = trimester
+    ? `You are in Trimester ${trimester}: add +${extraCal} kcal/day above your baseline.`
+    : 'Load your profile to see your current trimester recommendation.';
+
+  // Chart
+  if (log.length > 0) {
+    const labels = log.map(e => `Wk ${e.week}`);
+    const gained = log.map(e => preW ? +(e.weight - preW).toFixed(2) : e.weight);
+    const minTarget = wtTarget ? wtTarget.min : 5;
+    const maxTarget = wtTarget ? wtTarget.max : 16;
+
+    const ctx = document.getElementById('weightChart').getContext('2d');
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Weight Gained (kg)',
+            data: gained,
+            borderColor: '#e8707a',
+            backgroundColor: 'rgba(232,112,122,0.1)',
+            pointBackgroundColor: '#e8707a',
+            tension: 0.3, fill: true, pointRadius: 5
+          },
+          {
+            label: `Target Min (${minTarget} kg)`,
+            data: labels.map(() => minTarget),
+            borderColor: '#7aab8a', borderDash: [6, 4], pointRadius: 0, fill: false
+          },
+          {
+            label: `Target Max (${maxTarget} kg)`,
+            data: labels.map(() => maxTarget),
+            borderColor: '#d4a843', borderDash: [6, 4], pointRadius: 0, fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'top' } },
+        scales: {
+          y: { title: { display: true, text: preW ? 'kg gained from pre-pregnancy' : 'kg' } },
+          x: { title: { display: true, text: 'Week of Pregnancy' } }
+        }
+      }
+    });
+    document.getElementById('chartStatus').textContent = `Showing ${log.length} entries. Green/gold lines = your weight gain target range.`;
+  }
+
+  // Table
+  if (log.length === 0) {
+    document.getElementById('weightLogTable').innerHTML = '<p class="t-mute">No entries yet.</p>';
+    return;
+  }
+  let html = '<table class="data-table"><thead><tr><th>Week</th><th>Weight (kg)</th><th>Gained (kg)</th><th>Status</th></tr></thead><tbody>';
+  log.forEach(e => {
+    const g = preW ? +(e.weight - preW).toFixed(1) : null;
+    let status = '';
+    if (g !== null && wtTarget) {
+      if (g < wtTarget.min) status = `<span class="badge b-caut">Under target</span>`;
+      else if (g > wtTarget.max) status = `<span class="badge b-avoid">Over target</span>`;
+      else status = `<span class="badge b-safe">On track ✓</span>`;
+    }
+    html += `<tr><td>Week ${e.week}</td><td>${e.weight} kg</td><td>${g !== null ? g + ' kg' : 'N/A'}</td><td>${status}</td></tr>`;
+  });
+  html += '</tbody></table>';
+  document.getElementById('weightLogTable').innerHTML = html;
+}
+
+window.addEventListener('DOMContentLoaded', renderAll);
+</script>
+</body>
+</html>

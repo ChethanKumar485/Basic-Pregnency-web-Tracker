@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Advisor — Bloom v2</title>
+<link rel="stylesheet" href="../css/main.css"/>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🌸 <span>Bloom</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li><li><a href="timeline.html">Timeline</a></li>
+    <li><a href="nutrition.html">Nutrition</a></li><li><a href="weight.html">Weight</a></li>
+    <li><a href="activity.html">Activity</a></li><li><a href="sleep.html">Sleep</a></li>
+    <li><a href="warnings.html" class="warn-link">⚠ Warnings</a></li>
+    <li><a href="postpartum.html">Postpartum</a></li><li><a href="birth-plan.html">📋 Birth Plan</a></li><li><a href="ai-advisor.html" class="active">🤖 AI</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+<div class="page-wrap">
+  <a href="../index.html" class="back-link">← Dashboard</a>
+  <div class="ph">
+    <div class="eyebrow">AI-Powered · Image Analysis · Food &amp; Exercise</div>
+    <div class="page-title">🤖 AI <em>Pregnancy Advisor</em></div>
+    <div class="page-sub">Upload a photo of food, a meal, or an exercise position — get instant pregnancy-safety guidance powered by Claude AI.</div>
+  </div>
+
+  <!-- MODE SELECTOR -->
+  <div class="card mb-l">
+    <div class="card-title">What would you like to analyse?</div>
+    <p class="t-mute t-sm mb-l">Choose an analysis mode, then upload your image</p>
+    <div class="g g-3" id="modeGrid">
+      <div class="mode-card selected" id="mode-food" onclick="setMode('food')">
+        <div class="mode-icon">🍽️</div>
+        <h3>Food Safety</h3>
+        <p>Is this food safe in pregnancy?</p>
+      </div>
+      <div class="mode-card" id="mode-exercise" onclick="setMode('exercise')">
+        <div class="mode-icon">🏃‍♀️</div>
+        <h3>Exercise Check</h3>
+        <p>Is this exercise safe by trimester?</p>
+      </div>
+      <div class="mode-card" id="mode-general" onclick="setMode('general')">
+        <div class="mode-icon">🔍</div>
+        <h3>General Query</h3>
+        <p>Any pregnancy-related image</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPLOAD CARD -->
+  <div class="card mb-l">
+    <div class="card-title" id="uploadTitle">📤 Upload Food / Meal Photo</div>
+    <div class="drop-zone" id="dropZone"
+      onclick="document.getElementById('fileInput').click()"
+      ondragover="ev.preventDefault();this.classList.add('drag-over')"
+      ondragleave="this.classList.remove('drag-over')"
+      ondrop="handleDrop(event)">
+      <div style="font-size:3rem;opacity:.5;margin-bottom:.8rem">📷</div>
+      <p><strong>Click to upload</strong> or drag &amp; drop</p>
+      <p class="t-xs t-mute mt-s">JPG, PNG, WEBP · Max 10 MB</p>
+    </div>
+    <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFile(event)"/>
+    <div style="text-align:center;margin-top:.8rem">
+      <button class="btn btn-s btn-sm" onclick="document.getElementById('camInput').click()">📸 Use Camera</button>
+      <input type="file" id="camInput" accept="image/*" capture="environment" style="display:none" onchange="handleFile(event)"/>
+    </div>
+    <div id="previewArea" style="display:none;margin-top:1.5rem;text-align:center">
+      <img id="imgPreview" style="max-width:100%;max-height:380px;border-radius:var(--r-l);box-shadow:var(--sh-l)" alt="Preview"/>
+      <p class="t-xs t-mute mt-s" id="fileName"></p>
+    </div>
+    <div class="form-group mt-l">
+      <label class="form-label">Additional context (optional)</label>
+      <textarea id="ctx" class="form-input" rows="2" placeholder="e.g. 'I am 28 weeks pregnant' or 'Is this safe for gestational diabetes?'"></textarea>
+    </div>
+    <div style="text-align:center;margin-top:1.2rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-p" id="analyseBtn" onclick="analyseImage()" disabled>🤖 Analyse with AI</button>
+      <button class="btn btn-g" onclick="clearAll()">Clear</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="card mb-l" id="resultCard" style="display:none">
+    <div class="card-title">🌸 AI Analysis</div>
+    <div id="analysisResult"></div>
+    <div class="ib ib-g mt-l" style="font-size:.76rem">⚠️ This AI analysis is informational only and does not replace advice from your OB/GYN, midwife, or dietitian.</div>
+    <div style="display:flex;gap:.8rem;margin-top:1rem;flex-wrap:wrap">
+      <button class="btn btn-s btn-sm" onclick="saveResult()">💾 Save Result</button>
+      <button class="btn btn-g btn-sm" onclick="clearAll()">Analyse Another</button>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="card">
+    <div class="card-title">📚 Analysis History</div>
+    <div id="historyList"><p class="t-mute t-sm">No analyses saved yet.</p></div>
+    <button class="btn btn-g btn-sm mt-m" onclick="clearHistory()">Clear History</button>
+  </div>
+</div>
+
+<footer class="footer"><div class="footer-logo">🌸 <em>Bloom</em> v2</div><div>AI analysis is informational only · Always consult your healthcare provider</div></footer>
+<script src="../js/core.js"></script>
+<script>
+let currentMode='food', imgBase64=null, imgType='image/jpeg';
+
+const MODES = {
+  food:{
+    title:'📤 Upload Food / Meal Photo',
+    system:`You are a maternal nutrition expert and pregnancy dietitian. Analyse the food image for pregnancy safety. Structure your response clearly:
+1. 🍽️ **Food Identified** — what you see
+2. ✅ **Safe Elements** — pregnancy-safe ingredients and their benefits
+3. ⚠️ **Safety Concerns** — any risks (raw fish, unpasteurised dairy, high mercury, undercooked protein, excess caffeine, raw eggs)
+4. 🧬 **Key Pregnancy Nutrients** — identify folic acid, iron, calcium, DHA, choline, iodine present
+5. 🔄 **Pregnancy Modifications** — how to make this safer/more nutritious
+6. 📊 **Trimester Notes** — any trimester-specific advice
+7. 🏆 **Safety Rating** — SAFE ✅ / USE WITH CAUTION ⚠️ / AVOID 🚫
+Be compassionate and practical. Recommend consulting a healthcare provider.`
+  },
+  exercise:{
+    title:'📤 Upload Exercise Position Photo',
+    system:`You are a certified prenatal fitness expert. Analyse the exercise position for pregnancy safety. Structure:
+1. 🏃‍♀️ **Exercise Identified**
+2. ✅ **Pregnancy Benefits**
+3. ⚠️ **Safety Assessment** — safe in which trimesters?
+4. 🔄 **Modifications by Trimester** (T1: Wks 1-13, T2: Wks 14-27, T3: Wks 28-40)
+5. 🚫 **Contraindications** — who should avoid this?
+6. 💡 **Key Form Points** for pregnancy safety
+7. 🌸 **Safer Alternatives** if needed
+8. 🏆 **Safety Rating** — SAFE ALL TRIMESTERS ✅ / MODIFY BY TRIMESTER ⚠️ / AVOID 🚫
+Include pelvic floor considerations and the Talk Test. Always recommend consulting provider before exercise.`
+  },
+  general:{
+    title:'📤 Upload Any Pregnancy-Related Image',
+    system:`You are a comprehensive maternal wellness advisor. Provide evidence-based pregnancy guidance for whatever is shown. Use clear sections, flag safety concerns with ⚠️ or 🚫, highlight positives with ✅. Consider all three trimesters and postpartum where relevant. Always recommend consulting healthcare providers for medical decisions.`
+  }
+};
+
+function setMode(m) {
+  currentMode = m;
+  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('mode-' + m).classList.add('selected');
+  document.getElementById('uploadTitle').textContent = MODES[m].title;
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.remove('drag-over');
+  const f = e.dataTransfer.files[0]; if(f) processFile(f);
+}
+function handleFile(e) { const f=e.target.files[0]; if(f) processFile(f); }
+function processFile(f) {
+  if(!f.type.startsWith('image/')) { alert('Please upload an image file.'); return; }
+  if(f.size > 10*1024*1024) { alert('Max 10 MB.'); return; }
+  imgType = f.type || 'image/jpeg';
+  document.getElementById('fileName').textContent = f.name + ' (' + (f.size/1024).toFixed(0) + ' KB)';
+  const r = new FileReader();
+  r.onload = ev => {
+    imgBase64 = ev.target.result.split(',')[1];
+    document.getElementById('imgPreview').src = ev.target.result;
+    document.getElementById('previewArea').style.display = 'block';
+    document.getElementById('analyseBtn').disabled = false;
+  };
+  r.readAsDataURL(f);
+}
+
+async function analyseImage() {
+  if(!imgBase64) { alert('Upload an image first.'); return; }
+  const btn = document.getElementById('analyseBtn');
+  btn.disabled = true; btn.textContent = '⏳ Analysing...';
+  const rc = document.getElementById('resultCard');
+  const rd = document.getElementById('analysisResult');
+  rc.style.display = 'block';
+  rd.innerHTML = '<div class="ai-loading"><div class="spinner"></div><p class="t-mute">Bloom AI is analysing your image…<br/><span class="t-xs">This may take 10–20 seconds</span></p></div>';
+  rc.scrollIntoView({ behavior:'smooth', block:'start' });
+  const ctx = document.getElementById('ctx').value.trim();
+  const p = getProfile();
+  let profileCtx = '';
+  if(p.lmp) { const w=getWeekFromLMP(p.lmp); profileCtx=`\n\nUser is Week ${w} of pregnancy (Trimester ${getTrimester(w)}).`; }
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:1000,
+        system: MODES[currentMode].system,
+        messages:[{ role:'user', content:[
+          { type:'image', source:{ type:'base64', media_type:imgType, data:imgBase64 }},
+          { type:'text', text:'Analyse this image for pregnancy safety guidance.' + (ctx?'\n\nUser context: '+ctx:'') + profileCtx }
+        ]}]
+      })
+    });
+    if(!resp.ok) { const e=await resp.json(); throw new Error(e.error?.message||'API error '+resp.status); }
+    const data = await resp.json();
+    const text = data.content.map(b=>b.text||'').join('\n');
+    rd.innerHTML = '<div class="ai-result">' + text
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\n\n/g,'<br/><br/>')
+      .replace(/\n/g,'<br/>')
+      .replace(/✅/g,'<span style="color:var(--sage-d)">✅</span>')
+      .replace(/⚠️/g,'<span style="color:var(--gold)">⚠️</span>')
+      .replace(/🚫/g,'<span style="color:var(--err)">🚫</span>') + '</div>';
+  } catch(err) {
+    rd.innerHTML = '<div class="ib ib-g"><strong>⚠️ Analysis Error:</strong> ' + err.message + '<br/><span class="t-xs">This feature requires an Anthropic API key. See README.md for setup.</span></div>';
+  } finally { btn.disabled=false; btn.textContent='🤖 Analyse with AI'; }
+}
+
+function saveResult() {
+  const t = document.getElementById('analysisResult').innerText;
+  if(!t) return;
+  const h = JSON.parse(localStorage.getItem('bloomAIHistory')||'[]');
+  h.unshift({ date:new Date().toLocaleString(), mode:currentMode, result:t.slice(0,400)+'...' });
+  if(h.length>10) h.pop();
+  localStorage.setItem('bloomAIHistory', JSON.stringify(h));
+  renderHistory(); alert('Saved!');
+}
+function renderHistory() {
+  const h = JSON.parse(localStorage.getItem('bloomAIHistory')||'[]');
+  const d = document.getElementById('historyList');
+  if(!h.length) { d.innerHTML='<p class="t-mute t-sm">No analyses saved yet.</p>'; return; }
+  const icons = { food:'🍽️', exercise:'🏃‍♀️', general:'🔍' };
+  d.innerHTML = h.map(x=>`<div style="padding:.9rem;background:var(--s1);border-radius:var(--r-m);margin-bottom:.7rem;border-left:3px solid var(--clay-l)"><div style="display:flex;justify-content:space-between;margin-bottom:.3rem"><strong>${icons[x.mode]||'📷'} ${x.mode} analysis</strong><span class="t-xs t-mute">${x.date}</span></div><p class="t-xs t-mute">${x.result}</p></div>`).join('');
+}
+function clearHistory() { if(confirm('Clear history?')) { localStorage.removeItem('bloomAIHistory'); renderHistory(); } }
+function clearAll() {
+  imgBase64=null;
+  document.getElementById('previewArea').style.display='none';
+  document.getElementById('fileInput').value=''; document.getElementById('camInput').value='';
+  document.getElementById('ctx').value='';
+  document.getElementById('analyseBtn').disabled=true;
+  document.getElementById('resultCard').style.display='none';
+}
+
+// Fix dragover
+document.getElementById('dropZone').addEventListener('dragover', e => { e.preventDefault(); document.getElementById('dropZone').classList.add('drag-over'); });
+document.getElementById('dropZone').addEventListener('dragleave', () => { document.getElementById('dropZone').classList.remove('drag-over'); });
+
+window.addEventListener('DOMContentLoaded', () => { renderHistory(); });
+
+// Add mode-card style
+const style = document.createElement('style');
+style.textContent = `.mode-card{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1.4rem 1rem;border-radius:var(--r-l);border:2px solid var(--parch);background:var(--s1);cursor:pointer;text-align:center;transition:all .2s var(--ease)}.mode-card:hover{border-color:var(--clay-l);background:#fff}.mode-card.selected{border-color:var(--clay);background:#fff;box-shadow:var(--sh-m)}.mode-card .mode-icon{font-size:2rem}.mode-card h3{font-size:.88rem;font-weight:700;color:var(--ink)}.mode-card p{font-size:.74rem;color:var(--mute)}`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>

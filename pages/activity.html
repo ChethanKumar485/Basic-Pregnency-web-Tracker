@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activity — Bloom v2</title>
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo">🌸 <span>Bloom</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li><li><a href="timeline.html" >Timeline</a></li>
+    <li><a href="nutrition.html" >Nutrition</a></li><li><a href="weight.html" >Weight</a></li>
+    <li><a href="activity.html" class="active">Activity</a></li><li><a href="sleep.html" >Sleep</a></li>
+    <li><a href="warnings.html" class="warn-link">⚠ Warnings</a></li>
+    <li><a href="postpartum.html" >Postpartum</a></li><li><a href="birth-plan.html">📋 Birth Plan</a></li><li><a href="ai-advisor.html">🤖 AI</a></li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<div class="page-wrap">
+  <a href="../index.html" class="back-link">← Dashboard</a>
+  <div class="ph">
+    <div class="eyebrow">ACOG Exercise Guidelines</div>
+    <div class="page-title">🏃‍♀️ Physical <em>Activity</em></div>
+    <div class="page-sub">Safe exercise guidelines, the 150-minute weekly goal, Talk Test, and pelvic floor exercises.</div>
+  </div>
+<!-- Weekly Goal Tracker -->
+  <div class="card" style="text-align:center">
+    <div class="card-title">Weekly Activity Goal</div>
+    <p class="t-mute mb-l">Guidelines recommend <strong>150 minutes</strong> of moderate-intensity aerobic activity per week.</p>
+    <div class="stat-val" id="minutesDisplay">0 / 150 min</div>
+    <div style="background:var(--border);border-radius:100px;height:16px;margin:1rem auto;max-width:400px;overflow:hidden">
+      <div id="progressBar" style="height:100%;background:linear-gradient(90deg,var(--sage),#5e8f6e);width:0%;border-radius:100px;transition:width 0.5s"></div>
+    </div>
+    <div class="form-grid" style="max-width:400px;margin:1rem auto 0">
+      <div class="form-group">
+        <label class="form-label">Add Minutes</label>
+        <input type="number" id="addMins" class="form-input" placeholder="e.g. 30" min="1" max="180"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Activity Type</label>
+        <select id="actType" class="form-input">
+          <option>Brisk Walking</option>
+          <option>Swimming</option>
+          <option>Prenatal Yoga</option>
+          <option>Stationary Cycling</option>
+          <option>Low-impact Aerobics</option>
+          <option>Kegel Exercises</option>
+          <option>Stretching</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-p" onclick="addActivity()">Log Activity</button>
+    <button class="btn btn-g" style="margin-left:0.8rem" onclick="resetWeek()">Reset Week</button>
+    <div id="activityLog" class="mt-l"></div>
+  </div>
+
+  <!-- Talk Test -->
+  <div class="card" style="background:linear-gradient(135deg,var(--sage-l),#e8f5ed);border:2px solid var(--sage)">
+    <div class="card-title">🗣️ The Talk Test</div>
+    <p>A simple way to gauge exercise intensity during pregnancy:</p>
+    <div class="g g-2" style="margin-top:1rem">
+      <div style="padding:1rem;background:white;border-radius:var(--radius-sm);border-left:4px solid var(--sage)">
+        <strong>Moderate Intensity ✅</strong>
+        <p class="t-mute mt-s" style="font-size:0.88rem">You can carry on a conversation while exercising. Breathing is elevated but not laboured. Aim for this level!</p>
+        <p style="font-size:0.82rem;margin-top:0.5rem">Examples: brisk walk, casual swim, prenatal yoga, light cycling</p>
+      </div>
+      <div style="padding:1rem;background:white;border-radius:var(--radius-sm);border-left:4px solid var(--gold)">
+        <strong>Vigorous Intensity ⚠️</strong>
+        <p class="t-mute mt-s" style="font-size:0.88rem">Difficult to speak in full sentences. Use with caution — only if you were active before pregnancy and your provider approves.</p>
+        <p style="font-size:0.82rem;margin-top:0.5rem">Examples: running, fast cycling, high-intensity interval</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Safe Activities -->
+  <div class="card">
+    <div class="card-title">✅ Safe Exercise During Pregnancy</div>
+    <div class="g ga-xs">
+      <div class="act-card"><div class="act-icon">🚶‍♀️</div><h4>Brisk Walking</h4><p>Safest exercise at any trimester. 30 min/day meets weekly goals.</p></div>
+      <div class="act-card"><div class="act-icon">🏊‍♀️</div><h4>Swimming</h4><p>Excellent full-body, joint-friendly exercise. Reduces swelling.</p></div>
+      <div class="act-card"><div class="act-icon">🧘‍♀️</div><h4>Prenatal Yoga</h4><p>Improves flexibility, reduces back pain, calms anxiety. Avoid deep inversions.</p></div>
+      <div class="act-card"><div class="act-icon">🚴‍♀️</div><h4>Stationary Cycling</h4><p>No fall risk. Keeps heart rate in moderate zone. Safer than outdoor cycling.</p></div>
+      <div class="act-card"><div class="act-icon">💃</div><h4>Low-impact Aerobics</h4><p>Prenatal dance or aerobics classes designed for pregnancy.</p></div>
+      <div class="act-card"><div class="act-icon">🏋️‍♀️</div><h4>Strength Training</h4><p>Light weights, proper form. Avoid heavy loads and holding breath.</p></div>
+      <div class="act-card"><div class="act-icon">🤸‍♀️</div><h4>Stretching</h4><p>Reduces muscle tension, improves circulation. Do daily.</p></div>
+      <div class="act-card"><div class="act-icon">🧗‍♀️</div><h4>Pilates (Modified)</h4><p>Strengthens core safely. Avoid supine positions after week 16.</p></div>
+    </div>
+  </div>
+
+  <!-- Avoid -->
+  <div class="card">
+    <div class="card-title">🚫 Activities to Avoid</div>
+    <div class="g g-2">
+      <ul style="padding-left:1.2rem;line-height:2;font-size:0.92rem">
+        <li>Contact sports (basketball, soccer, rugby)</li>
+        <li>Activities with high fall risk (skiing, horseback riding, gymnastics)</li>
+        <li>Scuba diving (gas bubbles risk to baby)</li>
+        <li>Hot yoga / hot tub (overheating risk — keep body temp below 38.9°C)</li>
+        <li>High-altitude exercise (&gt;8,000 ft / 2,500 m) without acclimatization</li>
+      </ul>
+      <ul style="padding-left:1.2rem;line-height:2;font-size:0.92rem">
+        <li>Lying flat on back after week 28 (compresses vena cava)</li>
+        <li>Exercises with Valsalva maneuver (heavy breath-holding lifts)</li>
+        <li>Exercising in extreme heat or humidity</li>
+        <li>Any activity causing pain, dizziness, or contractions</li>
+        <li>Exercising if you have placenta previa, preterm labor risk, or severe anemia</li>
+      </ul>
+    </div>
+    <div class="ib ib-g mt-l">
+      ⚠️ Always stop exercising and call your provider if you experience: chest pain, shortness of breath before exertion, dizziness, headache, vaginal bleeding, fluid leaking, or decreased fetal movement.
+    </div>
+  </div>
+
+  <!-- Pelvic Floor -->
+  <div class="card" style="border:2px solid var(--lav)">
+    <div class="card-title">💜 Pelvic Floor (Kegel) Exercises</div>
+    <p class="t-mute mb-l">Daily Kegel exercises strengthen the muscles supporting the uterus, bladder, and bowels — reducing incontinence risk and aiding postpartum recovery.</p>
+    <div class="g g-2">
+      <div>
+        <h3>How to Do Kegels</h3>
+        <ol style="padding-left:1.4rem;line-height:2.2;font-size:0.92rem">
+          <li>Empty your bladder first</li>
+          <li>Tighten pelvic floor muscles (as if stopping urine flow)</li>
+          <li>Hold for 3–5 seconds, then relax for 3–5 seconds</li>
+          <li>Repeat 10–15 times per set</li>
+          <li>Do 3 sets per day</li>
+          <li>Don't tighten buttocks, abs, or thigh muscles</li>
+          <li>Don't hold your breath</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Benefits</h3>
+        <ul style="padding-left:1.2rem;line-height:2.2;font-size:0.92rem">
+          <li>Reduces urinary incontinence (leaking with sneezing/coughing)</li>
+          <li>Supports growing uterus weight</li>
+          <li>Reduces risk of prolapse</li>
+          <li>Helps perineum stretch during birth</li>
+          <li>Speeds postpartum recovery</li>
+        </ul>
+        <div class="ib ib-s mt-l">
+          💡 Set a daily phone reminder for Kegel exercises — consistency is key!
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn btn-p" onclick="startKegel()">⏱ Start Kegel Timer (5 sec)</button>
+      <div id="kegelDisplay" style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--lav);margin-top:1rem;display:none"></div>
+    </div>
+  </div>
+
+</div>
+<footer class="footer"><div class="footer-logo">🌸 <em>Bloom</em> v2</div><div>Exercise guidance based on ACOG physical activity guidelines</div></footer>
+<script src="../js/core.js"></script>
+<script>
+let weeklyMins = parseInt(localStorage.getItem('bloomWeeklyMins') || '0');
+let actLog = JSON.parse(localStorage.getItem('bloomActLog') || '[]');
+
+function updateGoalDisplay() {
+  weeklyMins = Math.max(0, weeklyMins);
+  document.getElementById('minutesDisplay').textContent = `${weeklyMins} / 150 min`;
+  const pct = Math.min(100, (weeklyMins / 150) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  let html = '';
+  actLog.slice(-5).reverse().forEach(e => {
+    html += `<div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.3rem">✅ ${e.mins} min — ${e.type}</div>`;
+  });
+  document.getElementById('activityLog').innerHTML = html;
+}
+function addActivity() {
+  const mins = parseInt(document.getElementById('addMins').value);
+  const type = document.getElementById('actType').value;
+  if (!mins || mins < 1) { alert('Enter valid minutes.'); return; }
+  weeklyMins += mins;
+  actLog.push({ mins, type });
+  localStorage.setItem('bloomWeeklyMins', weeklyMins);
+  localStorage.setItem('bloomActLog', JSON.stringify(actLog));
+  updateGoalDisplay();
+}
+function resetWeek() {
+  if (confirm('Reset weekly activity log?')) {
+    weeklyMins = 0; actLog = [];
+    localStorage.removeItem('bloomWeeklyMins');
+    localStorage.removeItem('bloomActLog');
+    updateGoalDisplay();
+  }
+}
+
+// Kegel timer
+let kegelInterval = null;
+function startKegel() {
+  if (kegelInterval) { clearInterval(kegelInterval); kegelInterval = null; }
+  let phase = 0; // 0=squeeze,1=relax
+  let secs = 5; let sets = 0; let reps = 0;
+  const display = document.getElementById('kegelDisplay');
+  display.style.display = 'block';
+  function tick() {
+    const label = phase === 0 ? '💜 SQUEEZE' : '🤍 RELAX';
+    display.textContent = `${label} — ${secs}s | Rep ${reps+1}/10 | Set ${sets+1}/3`;
+    secs--;
+    if (secs < 0) {
+      secs = 5;
+      if (phase === 0) { phase = 1; }
+      else { phase = 0; reps++; if (reps >= 10) { reps = 0; sets++; if (sets >= 3) { clearInterval(kegelInterval); display.textContent = '🎉 Kegel session complete! Great job!'; return; } } }
+    }
+  }
+  tick();
+  kegelInterval = setInterval(tick, 1000);
+}
+
+window.addEventListener('DOMContentLoaded', updateGoalDisplay);
+</script>
+</body>
+</html>
