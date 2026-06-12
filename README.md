@@ -154,10 +154,12 @@ All positions are illustrated with custom SVG diagrams:
 This application is for educational purposes only and does not constitute medical advice. Always consult a qualified OB/GYN, midwife, or registered dietitian for personalised guidance. In emergencies, call 112/911 immediately.
 
 ---
-👨‍💻 Author
+## 👨‍💻 Author
 Chethan Kumar
 
 GitHub: @ChethanKumar485
-##⭐ Support
+
+---
+## ⭐ Support
 
 If you like this project, give it a ⭐ on GitHub!" 🚀
