@@ -44,6 +44,40 @@ bloom-v2/
 ```
 
 ---
+<img width="1881" height="680" alt="image" src="https://github.com/user-attachments/assets/35ee3b28-ef33-4928-9b99-60511bf51cd0" />
+
+---
+<img width="1640" height="768" alt="image" src="https://github.com/user-attachments/assets/7e5e1825-bc30-4024-8f0a-7ba20427c84e" />
+
+---
+<img width="1308" height="805" alt="image" src="https://github.com/user-attachments/assets/4fe6417e-e0ee-4307-ab91-21a7cf7206db" />
+
+---
+<img width="1492" height="827" alt="image" src="https://github.com/user-attachments/assets/59bdfcb7-6d50-4481-80da-86c85e9688aa" />
+
+---
+<img width="705" height="829" alt="image" src="https://github.com/user-attachments/assets/bd071a7c-4923-465a-af0c-4d67c977b0e4" />
+
+---
+<img width="484" height="818" alt="image" src="https://github.com/user-attachments/assets/c306eba8-b775-4225-9b79-bce02f3b6c3a" />
+
+---
+<img width="528" height="846" alt="image" src="https://github.com/user-attachments/assets/cb965d17-b14e-426b-ba39-8af3bc82dfdf" />
+
+---
+<img width="519" height="725" alt="image" src="https://github.com/user-attachments/assets/4c1e8498-75d0-47a5-8a9a-97d18acf3a9e" />
+
+
+---
+<img width="473" height="432" alt="image" src="https://github.com/user-attachments/assets/313a240e-ef5b-4a75-8a42-c8a81e939438" />
+
+---
+<img width="999" height="728" alt="image" src="https://github.com/user-attachments/assets/c4d69c71-9eab-4b08-af92-b82615fe1e74" />
+
+---
+<img width="466" height="520" alt="image" src="https://github.com/user-attachments/assets/dedf6730-6195-406f-8dd4-d855332250b3" />
+
+---
 
 ## 🚀 Getting Started
 
