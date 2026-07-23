@@ -78,6 +78,15 @@ bloom-v2/
 <img width="466" height="520" alt="image" src="https://github.com/user-attachments/assets/dedf6730-6195-406f-8dd4-d855332250b3" />
 
 ---
+## 🌐 Live Demo
+
+🔗 **Try the application here:**  
+
+https://chethankumar485.github.io/Basic-Pregnency-web-Tracker/
+
+> **Direct Link:** https://chethankumar485.github.io/Basic-Pregnency-web-Tracker/
+> 
+---
 
 ## 🚀 Getting Started
 
